@@ -20,7 +20,7 @@ router.get("/", (req, res, next) => {
 
 
 //GET all entries For Organization
-//router.get("/", (req, res, next) => { 
+//router.get("/:OID", (req, res, next) => { 
     //primarydata.find( 
         //(error, data) => {
             //if (error) {
