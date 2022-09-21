@@ -42,6 +42,18 @@ router.get("/id/:id", (req, res, next) => {
     })
 });
 
+//To delete by ID
+/*
+router.get("/delete/:id", (req, res, next) => { 
+    organizationData.findByIdAndRemove({ _id: req.params.id }, (error, data) => {
+        if (error) {
+            return next(error)
+        } else {
+            res.json(data)
+        }
+    })
+});
+*/
 //GET entries based on search query
 //Ex: '...?eventName=Food&searchBy=name' 
 router.get("/search/", (req, res, next) => { 
@@ -78,6 +90,19 @@ router.get("/client/:id", (req, res, next) => {
         }
     );
 });
+
+
+router.get("/delete/:id", (req, res, next) => { 
+    eventdata.findByIdAndDelete({ _id: req.params.id }, (error, data) => {
+        if (error) {
+            return next(error)
+        } else {
+            res.json(data)
+        }
+    })
+});
+
+
 
 //POST
 router.post("/", (req, res, next) => { 
