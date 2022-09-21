@@ -65,28 +65,6 @@ router.get("/search/", (req, res, next) => {
 });
 
 
-router.get("/searchname/", (req, res, next) => { 
-    let dbQuery = "";
-    if (req.query["searchBy"] === 'name') {
-        dbQuery = { eventName: { $regex: `^${req.query["eventName"]}`, $options: "i" } }
-    } else {
-        res.json(data)
-    };
-    eventdata.findOneAndDelete( 
-        dbQuery, 
-        (error, data) => { 
-            if (error) {
-                return next(error);
-            } else {
-                res.json(data);
-            }
-        }
-    );
-});
-
-
-
-
 //GET events for which a client is signed up
 router.get("/client/:id", (req, res, next) => { 
     eventdata.find( 
