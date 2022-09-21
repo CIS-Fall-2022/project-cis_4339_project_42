@@ -75,6 +75,7 @@ router.get("/search/", (req, res, next) => {
     );
 });
 
+
 //GET events for which a client is signed up
 router.get("/client/:id", (req, res, next) => { 
     eventdata.find( 
@@ -90,6 +91,8 @@ router.get("/client/:id", (req, res, next) => {
 });
 
 
+//Delete By Event ID
+/*
 router.get("/delete/:id", (req, res, next) => { 
     eventdata.findByIdAndDelete({ _id: req.params.id }, (error, data) => {
         if (error) {
@@ -99,7 +102,7 @@ router.get("/delete/:id", (req, res, next) => {
         }
     })
 });
-
+*/
 
 
 //POST
