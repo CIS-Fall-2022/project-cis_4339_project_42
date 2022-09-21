@@ -20,21 +20,6 @@ router.get("/", (req, res, next) => {
 });
 
 
-//GET all entries For Organization
-//router.get("/:OID", (req, res, next) => { 
-    //organizationData.find( 
-        //(error, data) => {
-            //if (error) {
-                //return next(error);
-            //} else {
-                //res.json(data);
-            /*}
-        }
-    ).sort({ 'updatedAt': -1 }).limit(10);
-});
-*/
-
-
 //GET single entry by ID
 router.get("/id/:id", (req, res, next) => {
     primarydata.find( 
