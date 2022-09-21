@@ -257,6 +257,7 @@ export default {
     return {
       attendeeIDs: [],
       attendeeData: [],
+      oIDs: "",
       checkedServices: [],
       event: {
         eventName: "",
@@ -287,6 +288,7 @@ export default {
         this.checkedServices = data.services;
         this.event.address = data.address;
         this.attendeeIDs = data.attendees;
+        this.event.oIDs = data.oid;
         for (let i = 0; i < this.attendeeIDs.length; i++) {
           axios
             .get(
