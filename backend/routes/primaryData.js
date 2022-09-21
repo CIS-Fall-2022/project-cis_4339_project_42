@@ -49,6 +49,17 @@ router.get("/id/:id", (req, res, next) => {
     );
 });
 
+//To delete event by ID
+router.get("/delete/:id", (req, res, next) => { 
+    primarydata.findByIdAndRemove({ _id: req.params.id }, (error, data) => {
+        if (error) {
+            return next(error)
+        } else {
+            res.json(data)
+        }
+    })
+});
+
 //GET entries based on search query
 //Ex: '...?firstName=Bob&lastName=&searchBy=name' 
 router.get("/search/", (req, res, next) => { 
