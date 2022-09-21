@@ -19,22 +19,14 @@ router.get("/", (req, res, next) => {
 });
 
 //GET all organization
-router.get("/oid/", (req, res, next) => { 
-    let dbQuery = "";
-    if (req.query["searchBy"] === 'oid') {
-        dbQuery = { oid:  req.query["oid"] }
-        console.log(dbQuery)
-    };
-    eventdata.find( 
-        dbQuery, 
-        (error, data) => { 
-            if (error) {
-                return next(error);
-            } else {
-                res.json(data);
-            }
+router.get("/oid/:oid", (req, res, next) => { 
+    eventdata.find({oid: String(req.params.oid)}, (error, data) => {
+        if (error) {
+            return next(error)
+        } else {
+            res.json(data)
         }
-    );
+    })
 });
 
 //GET single entry by ID
