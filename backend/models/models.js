@@ -63,7 +63,7 @@ let eventDataSchema = new Schema({
     _id: { type: String, default: uuid.v1 },
     oid: { 
         type: String,
-        default: organizationSchema._id
+        default: uuid.v1
     },
     eventName: {
         type: String,
