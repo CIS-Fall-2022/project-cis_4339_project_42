@@ -39,7 +39,7 @@ router.get("/id/:id", (req, res, next) => {
         }
     })
 });
-
+/*
 //To delete event by ID
 router.get("/delete/:id", (req, res, next) => { 
     eventdata.findByIdAndRemove({ _id: req.params.id }, (error, data) => {
@@ -50,7 +50,7 @@ router.get("/delete/:id", (req, res, next) => {
         }
     })
 });
-
+*/
 
 //GET entries based on search query
 //Ex: '...?eventName=Food&searchBy=name' 
@@ -92,7 +92,7 @@ router.get("/client/:id", (req, res, next) => {
 
 
 //Delete By Event ID
-/*
+
 router.get("/delete/:id", (req, res, next) => { 
     eventdata.findByIdAndDelete({ _id: req.params.id }, (error, data) => {
         if (error) {
@@ -102,7 +102,7 @@ router.get("/delete/:id", (req, res, next) => {
         }
     })
 });
-*/
+
 
 
 //POST
