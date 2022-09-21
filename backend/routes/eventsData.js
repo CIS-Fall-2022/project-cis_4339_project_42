@@ -18,6 +18,19 @@ router.get("/", (req, res, next) => {
     ).sort({ 'updatedAt': -1 }).limit(10);
 });
 
+//GET all events in an organization
+router.get("/:OID", (req, res, next) => {
+    organizationData.find({ _id: req.params.id }, (error, data) => {
+        eventdata.find(
+            (error, data) => {
+                if (error) {
+                    return next(error)
+                } else {
+                    res.json(data)
+                }
+    })
+})});
+
 //GET single entry by ID
 router.get("/id/:id", (req, res, next) => { 
     eventdata.find({ _id: req.params.id }, (error, data) => {
