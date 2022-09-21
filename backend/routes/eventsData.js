@@ -18,7 +18,7 @@ router.get("/", (req, res, next) => {
     ).sort({ 'updatedAt': -1 }).limit(10);
 });
 
-//GET all organization
+//GET all events for an Organization
 router.get("/oid/:oid", (req, res, next) => { 
     eventdata.find({oid: String(req.params.oid)}, (error, data) => {
         if (error) {
