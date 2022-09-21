@@ -83,28 +83,8 @@ router.get("/search/", (req, res, next) => {
     );
 });
 
-//TRYING TO DELETE BY NAME
-/*
-router.get("/searchname/", (req, res, next) => { 
-    let dbQuery = "";
-    if (req.query["searchBy"] === 'name') {
-        dbQuery = { eventName: { $regex: `^${req.query["eventName"]}`, $options: "i" } }
-    } else {
-        res.json(data)
-    };
-    primarydata.findOneAndDelete( 
-        dbQuery, 
-        (error, data) => { 
-            if (error) {
-                return next(error);
-            } else {
-                res.json(data);
-            }
-        }
-    );
-});
 
-*/
+//*/
 
 
 //GET events for a single client
