@@ -81,8 +81,7 @@ router.get("/client/:id", (req, res, next) => {
 
 
 //Delete By Event ID
-
-router.get("/delete/:id", (req, res, next) => { 
+router.get("/delete/:oid", (req, res, next) => { 
     eventdata.findByIdAndDelete({ _id: req.params.id }, (error, data) => {
         if (error) {
             return next(error)
@@ -108,7 +107,7 @@ router.post("/", (req, res, next) => {
     );
 });
 
-//PUT
+//PUT For EVENT
 router.put("/:id", (req, res, next) => {
     eventdata.findOneAndUpdate(
         { _id: req.params.id },
@@ -122,6 +121,7 @@ router.put("/:id", (req, res, next) => {
         }
     );
 });
+
 
 //PUT add attendee to event
 router.put("/addAttendee/:id", (req, res, next) => {

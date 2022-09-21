@@ -49,7 +49,7 @@ router.get("/id/:id", (req, res, next) => {
     );
 });
 
-//To delete event by ID
+//To delete client by ID
 router.get("/delete/:id", (req, res, next) => { 
     primarydata.findByIdAndRemove({ _id: req.params.id }, (error, data) => {
         if (error) {
