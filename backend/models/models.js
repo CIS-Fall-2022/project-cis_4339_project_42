@@ -61,6 +61,10 @@ let primaryDataSchema = new Schema({
 //collection for eventData
 let eventDataSchema = new Schema({
     _id: { type: String, default: uuid.v1 },
+    oid: { 
+        type: String,
+        default: uuid.v1
+    },
     eventName: {
         type: String,
         require: true
