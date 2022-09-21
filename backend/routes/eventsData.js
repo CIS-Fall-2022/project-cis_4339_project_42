@@ -41,6 +41,7 @@ router.get("/delete/:id", (req, res, next) => {
     })
 });
 */
+
 //GET entries based on search query
 //Ex: '...?eventName=Food&searchBy=name' 
 router.get("/search/", (req, res, next) => { 
