@@ -135,6 +135,13 @@
                 placeholder
                 v-model="event.address.line1"
               />
+              <span class="text-black" v-if="v$.event.address.line1.$error">
+                <p
+                  class="text-red-700"
+                  v-for="error of v$.event.address.line1.$errors"
+                  :key="error.$uid"
+                >{{ error.$message }}!</p>
+              </span>
             </label>
           </div>
           <!-- form field -->
