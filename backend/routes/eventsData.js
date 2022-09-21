@@ -40,10 +40,9 @@ router.get("/id/:id", (req, res, next) => {
     })
 });
 
-//To delete by ID
-/*
+//To delete event by ID
 router.get("/delete/:id", (req, res, next) => { 
-    organizationData.findByIdAndRemove({ _id: req.params.id }, (error, data) => {
+    eventdata.findByIdAndRemove({ _id: req.params.id }, (error, data) => {
         if (error) {
             return next(error)
         } else {
@@ -51,7 +50,7 @@ router.get("/delete/:id", (req, res, next) => {
         }
     })
 });
-*/
+
 
 //GET entries based on search query
 //Ex: '...?eventName=Food&searchBy=name' 
