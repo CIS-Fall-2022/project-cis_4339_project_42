@@ -21,6 +21,10 @@ let primaryDataSchema = new Schema({
         type: String,
         require: true
     },
+    oid: { 
+        type: String,
+        default: uuid.v1
+    },
     middleName: {
         type: String,
     },
