@@ -66,10 +66,10 @@ router.get("/search/:oid", (req, res, next) => {
 });
 
 
-//GET events for which a client is signed up
-router.get("/client/:id", (req, res, next) => { 
+//GET events for which a client is signed up to in an Organization
+router.get("/client/:oid/:id", (req, res, next) => { 
     eventdata.find( 
-        { attendees: req.params.id }, 
+        { attendees: req.params.id, oid: String(req.params.oid) }, 
         (error, data) => { 
             if (error) {
                 return next(error);
