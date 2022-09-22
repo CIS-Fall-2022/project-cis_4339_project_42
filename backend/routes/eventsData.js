@@ -29,9 +29,9 @@ router.get("/oid/:oid", (req, res, next) => {
     })
 });
 
-//GET single entry by ID
-router.get("/id/:id", (req, res, next) => { 
-    eventdata.find({ _id: req.params.id }, (error, data) => {
+//GET single entry by ID in an Organization
+router.get(":oid/id/:id", (req, res, next) => { 
+    eventdata.find({ _id: req.params.id, oid: String(req.params.oid) }, (error, data) => {
         if (error) {
             return next(error)
         } else {
