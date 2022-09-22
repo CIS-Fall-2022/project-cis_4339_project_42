@@ -41,15 +41,16 @@ router.get(":oid/id/:id", (req, res, next) => {
 });
 
 
-//GET entries based on search query
+//GET entries based on search query within an Organization
 //Ex: '...?eventName=Food&searchBy=name' 
-router.get("/search/", (req, res, next) => { 
+router.get("/search/:oid", (req, res, next) => { 
     let dbQuery = "";
     if (req.query["searchBy"] === 'name') {
-        dbQuery = { eventName: { $regex: `^${req.query["eventName"]}`, $options: "i" } }
+        dbQuery = { eventName: { $regex: `^${req.query["eventName"]}`, $options: "i" }, oid: String(req.params.oid) }
     } else if (req.query["searchBy"] === 'date') {
         dbQuery = {
-            date:  req.query["eventDate"]
+            date:  req.query["eventDate"],
+            oid: String(req.params.oid)
         }
     };
     eventdata.find( 
