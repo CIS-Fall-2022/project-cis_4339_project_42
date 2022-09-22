@@ -3,7 +3,6 @@ const router = express.Router();
 
 //importing data model schemas
 let { eventdata } = require("../models/models"); 
-let { organizationData } = require("../models/models");
 
 //GET all entries
 router.get("/", (req, res, next) => { 
