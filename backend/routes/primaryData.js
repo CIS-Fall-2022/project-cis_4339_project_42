@@ -75,7 +75,7 @@ router.get("/search/", (req, res, next) => {
 
 //GET events for a single client
 router.get("/events/:oid", (req, res, next) => { 
-    eventdata.find({oid: String(req.params.oid)}, (error, data) => {
+    primarydata.find({oid: String(req.params.oid, req.params.eventdata(eventNames))}, (error, data) => {
         //_id: req.params.eventdata(eventNames), oid: eventdata.find(eventNames) }, (error, data) => {
         if (error) {
             return next(error)
