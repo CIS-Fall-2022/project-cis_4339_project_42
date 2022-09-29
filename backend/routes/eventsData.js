@@ -91,7 +91,28 @@ router.get("/delete/:oid", (req, res, next) => {
     })
 });
 
-
+//Deletes an Event based on the Search
+router.delete("/search/:oid", (req, res, next) => { 
+    let dbQuery = "";
+    if (req.query["searchBy"] === 'name') {
+        dbQuery = { eventName: { $regex: `^${req.query["eventName"]}`, $options: "i" }, oid: String(req.params.oid) }
+    } else if (req.query["searchBy"] === 'date') {
+        dbQuery = {
+            date:  req.query["eventDate"],
+            oid: String(req.params.oid)
+        }
+    };
+    eventdata.findOneAndDelete( 
+        dbQuery, 
+        (error, data) => { 
+            if (error) {
+                return next(error);
+            } else {
+                res.json(data);
+            }
+        }
+    );
+});
 
 //POST
 router.post("/", (req, res, next) => { 
