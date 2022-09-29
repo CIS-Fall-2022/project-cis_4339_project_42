@@ -8,7 +8,7 @@ let { eventdata } = require("../models/models");
 let { organizationData } = require("../models/models");
 
 //GET all organizations
-router.get("/", (req, res, next) => { 
+router.get("/oid/", (req, res, next) => { 
     organizationData.find( 
         (error, data) => {
             if (error) {
