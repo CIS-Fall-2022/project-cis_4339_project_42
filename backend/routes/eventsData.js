@@ -82,7 +82,7 @@ router.get("/client/:oid/:id", (req, res, next) => {
 
 //Delete By Event ID
 router.get("/delete/:oid", (req, res, next) => { 
-    eventdata.findByIdAndDelete({ _id: req.params.id }, (error, data) => {
+    eventdata.findByIdAndDelete({ _id: req.params.id, oid: String(req.params.oid) }, (error, data) => {
         if (error) {
             return next(error)
         } else {
