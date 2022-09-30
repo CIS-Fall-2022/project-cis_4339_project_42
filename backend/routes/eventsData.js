@@ -79,10 +79,10 @@ router.get("/client/:oid/:id", (req, res, next) => {
     );
 });
 
-
+//oid: String(req.params.oid)
 //Delete By Event ID
-router.get("/delete/:oid", (req, res, next) => { 
-    eventdata.findByIdAndDelete({ _id: req.params.id, oid: String(req.params.oid) }, (error, data) => {
+router.get("/delete/:id", (req, res, next) => { 
+    eventdata.findByIdAndDelete({ _id: req.params.id}, (error, data) => {
         if (error) {
             return next(error)
         } else {
