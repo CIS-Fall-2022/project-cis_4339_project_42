@@ -20,10 +20,10 @@ router.get("/oid/", (req, res, next) => {
     );
 });
 
-/*
+
 //To delete organization by ID
-router.get("/delete/Org/:id", (req, res, next) => { 
-    organizationData.findByIdAndDelete({ _id: req.params.id }, (error, data) => {
+router.get("/orgdelete/:oid", (req, res, next) => { 
+    organizationData.findByIdAndDelete({ _id: String(req.params.oid) }, (error, data) => {
         if (error) {
             return next(error)
         } else {
@@ -31,7 +31,7 @@ router.get("/delete/Org/:id", (req, res, next) => {
         }
     })
 });
-*/
+
 
 //GET all entries
 router.get("/", (req, res, next) => { 
