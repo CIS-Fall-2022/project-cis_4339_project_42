@@ -18,9 +18,8 @@ router.get("/", (req, res, next) => {
 });
 
 //GET all events for an Organization
-router.get("/:id", (req, res, next) => { 
-    organizationData.find({_id: req.params.id }, (error, data) => {
-    //eventdata.find({oid: String(req.params.oid)}, (error, data) => {
+router.get("/:oid", (req, res, next) => { 
+    eventdata.find({oid: String(req.params.oid)}, (error, data) => {
         if (error) {
             return next(error)
         } else {

@@ -11,9 +11,10 @@
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-300">
-            <tr @click="editClient(client._id)" v-for="client in queryData" :key="client._id">
+            <!--<tr @click="editClient(client._id)" v-for="client in queryData" :key="client._id">
               <td class="p-2 text-left">{{ client.orgName }}</td>
             </tr>
+            -->
           </tbody>
         </table>
       </div>
