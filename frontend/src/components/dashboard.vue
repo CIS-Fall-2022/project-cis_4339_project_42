@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <main>
     <div>
@@ -11,6 +12,15 @@
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-300">
+            <tr>
+                <td><div>
+                <iframe style="background: #FFFFFF;border: none;
+                border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" 
+                width="640" height="480" 
+                src="https://charts.mongodb.com/charts-project-0-meuix/embed/charts?id=6337535c-f5b8-4843-873a-0454b62d36cc&maxDataAge=3600&theme=light&autoRefresh=true">
+                </iframe>
+                </div></td>
+            </tr>
             <!--<tr @click="editClient(client._id)" v-for="client in queryData" :key="client._id">
               <td class="p-2 text-left">{{ client.orgName }}</td>
             </tr>
