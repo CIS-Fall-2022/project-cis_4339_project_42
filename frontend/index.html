@@ -14,5 +14,39 @@
     </noscript>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
+      <footer>
+        <section class="about-section text-center text-white-50" id="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <p class="text-white-150">
+                        <script type="text/javascript">
+                        var today = new Date();
+                        var day = today.getDay();
+                            
+                        var daynames = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+                                
+                                
+                        document.write("Today is " +daynames[day] +".");
+                        document.write("<br/>");
+                                
+                        var hour = today.getHours();
+                        var prepand = (hour >= 12)? " PM ":"AM ";
+                        hour = hour % 12;
+                        hour = hour ? hour : 12;
+                            
+                        var minute = today.getMinutes();
+                        minute = minute < 10 ? '0' + minute : minute;
+                            
+                        var theTime = hour + " : " + minute +" : "+ today.getSeconds() + prepand;
+                            
+                        document.write("\tCurrent Time: " + theTime);
+                        </script> 
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+      </footer>
   </body>
 </html>
