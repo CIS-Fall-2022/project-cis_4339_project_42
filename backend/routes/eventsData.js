@@ -17,6 +17,8 @@ router.get("/", (req, res, next) => {
     ).sort({ 'updatedAt': -1 }).limit(10);
 });
 
+
+//Michael tried Aggregation to get the chart response in PostMan
 //GET Chart by Aggregation (Chart pipeline was provided by https://www.mongodb.com/products/charts)
 //Except the date part :)
 router.get("/chart", (req, res, next) => { 
