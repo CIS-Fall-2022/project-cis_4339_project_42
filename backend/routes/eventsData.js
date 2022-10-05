@@ -227,22 +227,24 @@ router.delete("/search/:oid", (req, res, next) => {
     );
 });
 
-//POST
-router.post("/:oid", (req, res, next) => { 
-    eventdata.create( 
-      {oid: String(req.params.oid) },
-        req.body, 
-        (error, data) => { 
-            if (error) {
-                return next(error);
-            } else {
-                res.json(data);
-            }
-        }
-    );
+//POST an Event with the given oid from the front end
+router.post("/", (req, res, next) => { 
+  eventdata.create( 
+      req.body,
+      (error, data) => { 
+          if (error) {
+              return next(error);
+          } else {
+              res.json(data); 
+          }
+      }
+  );
+  eventdata.createdAt;
+  eventdata.updatedAt;
+  eventdata.createdAt instanceof Date;
 });
 
-//PUT For EVENT
+//PUT an Event with the provided id and oid
 router.put("/:id/:oid", (req, res, next) => {
     eventdata.findOneAndUpdate(
         { _id: req.params.id, oid: String(req.params.oid) },

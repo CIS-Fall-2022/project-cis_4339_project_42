@@ -70,7 +70,7 @@ let eventDataSchema = new Schema({
     _id: { type: String, default: uuid.v1 },
     oid: { 
         type: String,
-        default: uuid.v1
+        require: true
     },
     eventName: {
         type: String,
@@ -107,7 +107,8 @@ let eventDataSchema = new Schema({
         type: String
     }]
 }, {
-    collection: 'eventData'
+    collection: 'eventData',
+    timestamps: true
 });
 
 // create models from mongoose schemas
