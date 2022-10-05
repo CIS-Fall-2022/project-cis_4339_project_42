@@ -54,10 +54,23 @@ router.get("/", (req, res, next) => {
 });
 
 
-//GET single entry by ID
-router.get("/id/:id", (req, res, next) => {
+//GET all clients in an Organization
+router.get("/:oid", (req, res, next) => { 
+    primarydata.find( {oid: String(req.params.oid)},
+        (error, data) => {
+            if (error) {
+                return next(error);
+            } else {
+                res.json(data);
+            }
+        }
+    ).sort({ 'updatedAt': -1 }).limit(10);
+});
+
+//GET single client by ID in an Organization
+router.get(":oid/id/:id", (req, res, next) => {
     primarydata.find( 
-        { _id: req.params.id }, 
+        { _id: req.params.id, oid: String(req.params.oid) }, 
         (error, data) => {
             if (error) {
                 return next(error);
@@ -79,15 +92,17 @@ router.get("/delete/:id", (req, res, next) => {
     })
 });
 
-//GET entries based on search query
+//GET entries based on search query within an Organization
 //Ex: '...?firstName=Bob&lastName=&searchBy=name' 
-router.get("/search/", (req, res, next) => { 
+router.get("/search/:oid", (req, res, next) => { 
     let dbQuery = "";
     if (req.query["searchBy"] === 'name') {
-        dbQuery = { firstName: { $regex: `^${req.query["firstName"]}`, $options: "i" }, lastName: { $regex: `^${req.query["lastName"]}`, $options: "i" } }
+        dbQuery = { firstName: { $regex: `^${req.query["firstName"]}`, $options: "i" }, lastName: { $regex: `^${req.query["lastName"]}`,
+        oid: String(req.params.oid), $options: "i" } }
     } else if (req.query["searchBy"] === 'number') {
         dbQuery = {
-            "phoneNumbers.primaryPhone": { $regex: `^${req.query["phoneNumbers.primaryPhone"]}`, $options: "i" }
+            "phoneNumbers.primaryPhone": { $regex: `^${req.query["phoneNumbers.primaryPhone"]}`,
+            oid: String(req.params.oid), $options: "i" }
         }
     };
     primarydata.find( 
@@ -107,9 +122,10 @@ router.get("/search/", (req, res, next) => {
 // oid: String(req.params.organizationData)
 
 //GET events for a single client
-router.get("/events/:id", (req, res, next) => { 
+//Not entirely sure what this endpoint is for
+router.get("/events/:oid/:id", (req, res, next) => { 
     //eventdata.find((eventNames),(error, data) => {
-    eventdata.find({_id: req.params.id , oid: String(req.body.eventNames) }, (error, data) => {
+    eventdata.find({_id: req.params.id , oid: String(req.params.oid) }, (error, data) => {
         if (error) {
             return next(error)
         } else {
