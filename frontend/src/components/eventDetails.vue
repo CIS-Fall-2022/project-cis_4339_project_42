@@ -291,6 +291,11 @@ export default {
         this.event.address = data.address;
         this.attendeeIDs = data.attendees;
         this.event.oIDs = data.oid;
+        if (this.event.oIDs.length <= 0) {
+          this.event.oIDs = null
+        }
+        else {
+
         for (let i = 0; i < this.attendeeIDs.length; i++) {
           axios
             .get(
@@ -307,7 +312,7 @@ export default {
                 attendeePhoneNumber: data.phoneNumbers[0].primaryPhone,
               });
             });
-        }
+        }}
       });
   },
   methods: {
