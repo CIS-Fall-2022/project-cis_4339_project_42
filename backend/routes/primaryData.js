@@ -134,7 +134,7 @@ router.get("/events/:oid/:id", (req, res, next) => {
     });
 });
 
-//POST
+//POST a Client with the provided oid from the front end
 router.post("/", (req, res, next) => { 
     primarydata.create( 
         req.body,
@@ -152,9 +152,9 @@ router.post("/", (req, res, next) => {
 });
 
 //PUT update (make sure req body doesn't have the id)
-router.put("/:id", (req, res, next) => { 
+router.put("/:id/:oid", (req, res, next) => { 
     primarydata.findOneAndUpdate( 
-        { _id: req.params.id }, 
+        { _id: req.params.id, oid: String(req.params.oid) }, 
         req.body,
         (error, data) => {
             if (error) {
