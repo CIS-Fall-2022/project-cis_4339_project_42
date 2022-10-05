@@ -227,6 +227,24 @@ router.delete("/search/:oid", (req, res, next) => {
     );
 });
 
+router.post("/", (req, res, next) => { 
+  eventdata.create( 
+      req.body,
+      (error, data) => { 
+          if (error) {
+              return next(error);
+          } else {
+              res.json(data); 
+          }
+      }
+  );
+  eventdata.createdAt;
+  eventdata.updatedAt;
+  eventdata.createdAt instanceof Date;
+});
+
+
+
 //POST
 router.post("/:oid", (req, res, next) => { 
     eventdata.create( 
@@ -243,9 +261,9 @@ router.post("/:oid", (req, res, next) => {
 });
 
 //PUT For EVENT
-router.put("/:id/:oid", (req, res, next) => {
+router.put("/:id", (req, res, next) => {
     eventdata.findOneAndUpdate(
-        { _id: req.params.id, oid: String(req.params.oid) },
+        { _id: req.params.id }, //, oid: String(req.params.oid) },
         req.body,
         (error, data) => {
             if (error) {
@@ -255,6 +273,9 @@ router.put("/:id/:oid", (req, res, next) => {
             }
         }
     );
+    eventdata.createdAt;
+    eventdata.updatedAt;
+    eventdata.createdAt instanceof Date;
 });
 
 
