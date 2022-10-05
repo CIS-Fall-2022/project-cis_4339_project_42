@@ -12,6 +12,7 @@
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-300">
+            <!--I connected our Atlas through an embeded code BUT did had to modified the template so that the Chart will display properly-->
             <tr>
                 <td><div>
                 <iframe style="background: #FFFFFF;border: none;
