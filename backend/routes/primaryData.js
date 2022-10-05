@@ -7,6 +7,12 @@ let { primarydata } = require("../models/models");
 let { eventdata } = require("../models/models");
 let { organizationData } = require("../models/models");
 
+
+
+//We added all the organizations APIs in PrimaryData.JS
+//Because our Organization ID and event ID 
+//all link to the clients (PrimaryDB)
+
 //GET all organizations
 router.get("/oid/", (req, res, next) => { 
     organizationData.find( 

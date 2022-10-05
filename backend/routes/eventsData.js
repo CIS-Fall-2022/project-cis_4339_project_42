@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 //importing data model schemas
-let { eventdata, organizationData } = require("../models/models"); 
+let { eventdata } = require("../models/models"); 
 
 //GET all entries
 router.get("/", (req, res, next) => { 
@@ -17,7 +17,7 @@ router.get("/", (req, res, next) => {
     ).sort({ 'updatedAt': -1 }).limit(10);
 });
 
-//GET all events for an Organization
+//GET all events for an individual Organization
 router.get("/:oid", (req, res, next) => { 
     eventdata.find({oid: String(req.params.oid)}, (error, data) => {
         if (error) {
@@ -79,8 +79,11 @@ router.get("/client/:oid/:id", (req, res, next) => {
     );
 });
 
-//oid: String(req.params.oid)
-//Delete By Event ID
+//Below you will see 2 different types of DELETE
+//We did this to help the user since many may not know th Events ID to DELETE
+
+//Method 1
+//Delete Event By Event ID
 router.get("/delete/:id", (req, res, next) => { 
     eventdata.findByIdAndDelete({ _id: req.params.id}, (error, data) => {
         if (error) {
@@ -91,6 +94,7 @@ router.get("/delete/:id", (req, res, next) => {
     })
 });
 
+//Method 2
 //Deletes an Event based on the Search
 router.delete("/search/:oid", (req, res, next) => { 
     let dbQuery = "";

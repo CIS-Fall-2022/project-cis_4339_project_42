@@ -2,6 +2,9 @@ const uuid = require('uuid');
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+
+//Added the Types and ObjectID because OrgID is an ObjectID and this allows us to get the Organization
+// But in Event and Primary we convert it to a string through String(req.params.id) when it is being pulled from OrganizationData
 //collection for the Organizations
 let organizationSchema = new Schema({
     _id: { type: Schema.Types.ObjectId, default: uuid.v1 },
