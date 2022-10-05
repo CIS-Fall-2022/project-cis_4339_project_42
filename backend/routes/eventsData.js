@@ -17,6 +17,113 @@ router.get("/", (req, res, next) => {
     ).sort({ 'updatedAt': -1 }).limit(10);
 });
 
+//GET Chart by Aggregation (Chart pipeline was provided by https://www.mongodb.com/products/charts)
+//Except the date part :)
+router.get("/chart", (req, res, next) => { 
+
+  //Holds the aggregation
+  const agg = [
+      {
+        '$match': {
+          'date': {
+            '$gte': new Date('Thu, 01 Sep 2022 00:00:00 GMT'), 
+            '$lte': new Date('Tue, 01 Nov 2022 00:00:00 GMT')
+          }
+        }
+      }, {
+        '$addFields': {
+          '__alias_0': {
+            '$cond': {
+              'if': {
+                '$isArray': '$attendees'
+              }, 
+              'then': {
+                '$size': '$attendees'
+              }, 
+              'else': 0
+            }
+          }
+        }
+      }, {
+        '$addFields': {
+          'date': {
+            '$cond': {
+              'if': {
+                '$eq': [
+                  {
+                    '$type': '$date'
+                  }, 'date'
+                ]
+              }, 
+              'then': '$date', 
+              'else': null
+            }
+          }
+        }
+      }, {
+        '$addFields': {
+          '__alias_1': {
+            'year': {
+              '$year': '$date'
+            }, 
+            'month': {
+              '$subtract': [
+                {
+                  '$month': '$date'
+                }, 1
+              ]
+            }
+          }
+        }
+      }, {
+        '$group': {
+          '_id': {
+            '__alias_1': '$__alias_1', 
+            '__alias_2': '$eventName'
+          }, 
+          '__alias_0': {
+            '$sum': '$__alias_0'
+          }
+        }
+      }, {
+        '$project': {
+          '_id': 0, 
+          '__alias_1': '$_id.__alias_1', 
+          '__alias_2': '$_id.__alias_2', 
+          '__alias_0': 1
+        }
+      }, {
+        '$group': {
+          '_id': {
+            'x': '$x'
+          }, 
+          '__grouped_docs': {
+            '$push': '$$ROOT'
+          }
+        }
+      }, {
+        '$sort': {
+          '_id.x.year': 1, 
+          '_id.x.month': 1
+        }
+      }, {
+        '$unwind': '$__grouped_docs'
+      }
+    ];
+
+  //Executes the aggregation with the aggrgation stored in the agg constant, then returns the json data
+  eventdata.aggregate(agg).exec((error, data) => {
+    if (error) {
+        return next(error)
+    } else {
+        res.json(data)
+    }
+})
+});
+   
+  
+  
+
 //GET all events for an Organization
 router.get("/:oid", (req, res, next) => { 
     eventdata.find({oid: String(req.params.oid)}, (error, data) => {
