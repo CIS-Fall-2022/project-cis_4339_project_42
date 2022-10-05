@@ -118,20 +118,10 @@ router.get("/search/:oid", (req, res, next) => {
 });
 
 
-//*/
-// oid: String(req.params.organizationData)
-
 //GET events for a single client
 //Not entirely sure what this endpoint is for
-router.get("/events/:oid/:id", (req, res, next) => { 
-    //eventdata.find((eventNames),(error, data) => {
-    eventdata.find({_id: req.params.id , oid: String(req.params.oid) }, (error, data) => {
-        if (error) {
-            return next(error)
-        } else {
-            res.json(data)
-        }
-    });
+router.get("/events/:id", (req, res, next) => { 
+    
 });
 
 //POST a Client with the provided oid from the front end
