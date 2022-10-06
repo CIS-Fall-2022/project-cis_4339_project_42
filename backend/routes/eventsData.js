@@ -17,10 +17,134 @@ router.get("/", (req, res, next) => {
     ).sort({ 'updatedAt': -1 }).limit(10);
 });
 
+//GET Chart by Aggregation based on the provided OID (Chart pipeline was provided by https://www.mongodb.com/products/charts)
+//Except the date part :)
+router.get("/chart/:oid", (req, res, next) => { 
+
+  //Holds the current and past dates to be used in the aggregation
+  var currentDate = new Date();
+  var pastDate = currentDate.getMonth() - 2;
+
+  //Holds the aggregation
+  const agg = [
+    {
+      '$match': {
+        'date': {
+          '$gte': new Date(pastDate), 
+          '$lte': new Date(currentDate)
+        }, 
+        'oid': {
+          '$in': [
+            req.params.oid
+          ]
+        }
+      }
+    }, {
+      '$addFields': {
+        '__alias_0': {
+          '$cond': {
+            'if': {
+              '$isArray': '$attendees'
+            }, 
+            'then': {
+              '$size': '$attendees'
+            }, 
+            'else': 0
+          }
+        }
+      }
+    }, {
+      '$addFields': {
+        'date': {
+          '$cond': {
+            'if': {
+              '$eq': [
+                {
+                  '$type': '$date'
+                }, 'date'
+              ]
+            }, 
+            'then': '$date', 
+            'else': null
+          }
+        }
+      }
+    }, {
+      '$addFields': {
+        '__alias_1': {
+          'year': {
+            '$year': '$date'
+          }, 
+          'month': {
+            '$subtract': [
+              {
+                '$month': '$date'
+              }, 1
+            ]
+          }
+        }
+      }
+    }, {
+      '$group': {
+        '_id': {
+          '__alias_1': '$__alias_1', 
+          '__alias_2': '$eventName'
+        }, 
+        '__alias_0': {
+          '$sum': '$__alias_0'
+        }
+      }
+    }, {
+      '$project': {
+        '_id': 0, 
+        '__alias_1': '$_id.__alias_1', 
+        '__alias_2': '$_id.__alias_2', 
+        '__alias_0': 1
+      }
+    }, {
+      '$project': {
+        'y': '$__alias_0', 
+        'x': '$__alias_1', 
+        'color': '$__alias_2', 
+        '_id': 0
+      }
+    }, {
+      '$group': {
+        '_id': {
+          'x': '$x'
+        }, 
+        '__grouped_docs': {
+          '$push': '$$ROOT'
+        }
+      }
+    }, {
+      '$sort': {
+        '_id.x.year': 1, 
+        '_id.x.month': 1
+      }
+    }, {
+      '$unwind': '$__grouped_docs'
+    }, {
+      '$replaceRoot': {
+        'newRoot': '$__grouped_docs'
+      }
+    }, {
+      '$limit': 5000
+    }
+  ];
+
+  //Executes the aggregation with the aggrgation stored in the agg constant, then returns the json data
+  eventdata.aggregate(agg).exec((error, data) => {
+    if (error) {
+        return next(error)
+    } else {
+        res.json(data)
+    }
+})
+});
 
 //Michael tried Aggregation to get the chart response in PostMan
 //GET Chart by Aggregation (Chart pipeline was provided by https://www.mongodb.com/products/charts)
-//Except the date part :)
 router.get("/chart", (req, res, next) => { 
 
   //Holds the aggregation
