@@ -259,7 +259,7 @@ router.put("/:id/:oid", (req, res, next) => {
   );
 });
 
-//PUT 
+//PUT an Attendee in the Event
 router.put("/updateAttendees", (req, res, next) => {
   eventdata.findByIdAndUpdate(
     {_id: req.body._id},
