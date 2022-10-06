@@ -18,14 +18,14 @@ MONGO_URL = mongodb+srv://<username>:<password>@cluster0.abcdc.mongodb.net/dbnam
 ```
 npm start
 ```
-## Endpoint Documentation
+# Endpoint Documentation
 SPRINT 2
 
-# Sasser PostMan
+## Sasser PostMan
 ```
 
 ```
-# Michael's Postman
+## Michael's Postman
 ```
 https://documenter.getpostman.com/view/23482302/2s83zdx6mJ
 ```
