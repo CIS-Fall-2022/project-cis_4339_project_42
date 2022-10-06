@@ -274,6 +274,7 @@ router.put("/updateAttendees", (req, res, next) => {
   );
 });
 
+/*
 //PUT add attendee to event
 router.put("/addAttendee/:id", (req, res, next) => {
     //only add attendee if not yet signed uo
@@ -303,5 +304,5 @@ router.put("/addAttendee/:id", (req, res, next) => {
     );
     
 });
-
+*/
 module.exports = router;
