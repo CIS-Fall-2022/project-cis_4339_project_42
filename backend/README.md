@@ -34,3 +34,7 @@ https://documenter.getpostman.com/view/23482302/2s83zdx6mJ
 ```
 
 ```
+### Atlast Cloud DB link
+```
+mongodb+srv://admin:VKBNbpHqRPTwC4t0@cis-4339.fzizdes.mongodb.net/CIS-4339
+```
