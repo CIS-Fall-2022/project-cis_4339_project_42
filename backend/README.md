@@ -22,17 +22,13 @@ npm start
 # Endpoint Documentation
 SPRINT 2
 
-## Sasser's PostMan 
+## Sasser's & Luis's PostMan 
 ```
 https://documenter.getpostman.com/view/17666289/2s83zdx74w
 ```
 ## Michael's Postman
 ```
 https://documenter.getpostman.com/view/23482302/2s83zdx6mJ
-```
-## Luis's Postman
-```
-
 ```
 ### Atlas Cloud mongoDB link
 ```
