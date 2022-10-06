@@ -1,3 +1,5 @@
+# SPRINT 2 ARE IN BACKEND README!!
+
 # Data Platform Project Setup
 
 Requirements:
