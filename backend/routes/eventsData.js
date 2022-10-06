@@ -259,6 +259,20 @@ router.put("/:id/:oid", (req, res, next) => {
   );
 });
 
+//PUT 
+router.put("/updateAttendees", (req, res, next) => {
+  eventdata.findByIdAndUpdate(
+    {_id: req.body._id},
+    { $addToSet: { attendees: req.body.attendee}},
+    (error, data ) => {
+      if (error) {
+        res.send(error);
+      } else {
+        res.send(data);
+      }
+    }
+  );
+});
 
 //PUT add attendee to event
 router.put("/addAttendee/:id", (req, res, next) => {
