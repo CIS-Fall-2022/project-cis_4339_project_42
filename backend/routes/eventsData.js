@@ -103,9 +103,9 @@ router.get("/chart/:oid", (req, res, next) => {
       }
     }, {
       '$project': {
-        'y': '$__alias_0', 
-        'x': '$__alias_1', 
-        'color': '$__alias_2', 
+        'Number of Attendees': '$__alias_0', 
+        'Date': '$__alias_1', 
+        'Event Name': '$__alias_2', 
         '_id': 0
       }
     }, {
@@ -145,6 +145,7 @@ router.get("/chart/:oid", (req, res, next) => {
 
 //Michael tried Aggregation to get the chart response in PostMan
 //GET Chart by Aggregation (Chart pipeline was provided by https://www.mongodb.com/products/charts)
+//This was the Aggregation given to me by the link above but the above one is the working one
 router.get("/chart", (req, res, next) => { 
 
   //Holds the aggregation
@@ -214,9 +215,9 @@ router.get("/chart", (req, res, next) => {
       }, {
         '$project': {
           '_id': 0, 
-          '__alias_1': '$_id.__alias_1', 
-          '__alias_2': '$_id.__alias_2', 
-          '__alias_0': 1
+          '_Date': '$_id.__alias_1', 
+          'Event Name': '$_id.__alias_2', 
+          'Number of Attendees': 1
         }
       }, {
         '$group': {
