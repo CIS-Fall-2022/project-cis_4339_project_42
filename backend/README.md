@@ -1,3 +1,4 @@
+# SPRINT 2 POSTMAN LINKS BELOW!!!
 # Backend
 
 This implementation is for NodeJS based on [Express](https://expressjs.com/) and [MongoDB](https://www.mongodb.com/) and uses [mongoose](https://mongoosejs.com/) as the ODM.
@@ -21,11 +22,15 @@ npm start
 # Endpoint Documentation
 SPRINT 2
 
-## Sasser PostMan
+## Sasser's & Luis's PostMan 
 ```
-
+https://documenter.getpostman.com/view/17666289/2s83zdx74w
 ```
 ## Michael's Postman
 ```
 https://documenter.getpostman.com/view/23482302/2s83zdx6mJ
+```
+### Atlas Cloud mongoDB link
+```
+mongodb+srv://admin:VKBNbpHqRPTwC4t0@cis-4339.fzizdes.mongodb.net/CIS-4339
 ```
