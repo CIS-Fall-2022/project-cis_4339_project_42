@@ -48,7 +48,7 @@ export default {
     axios
       .get(
         import.meta.env.VITE_ROOT_API +
-          `/primarydata/id/${this.$route.params.id}`
+          `/primarydata/${this.$route.params.oid}/id/${this.$route.params.id}`
       )
       .then((resp) => {
         let data = resp.data[0];
@@ -69,7 +69,7 @@ export default {
     axios
       .get(
         import.meta.env.VITE_ROOT_API +
-          `/eventdata/client/${this.$route.params.id}`
+          `/eventdata/client/${this.$route.params.oid}/${this.$route.params.id}`
       )
       .then((resp) => {
         let data = resp.data;
@@ -84,6 +84,7 @@ export default {
       let data = resp.data;
       for (let i = 0; i < data.length; i++) {
         this.eventData.push({
+          oid: data[i].oid,
           eventName: data[i].eventName,
           _id: data[i]._id,
           attendees: data[i].attendees,
@@ -107,13 +108,13 @@ export default {
     addToEvent() {
       this.eventsChosen.forEach((event) => {
         let apiURL =
-          import.meta.env.VITE_ROOT_API + `/eventdata/addAttendee/` + event._id;
+          import.meta.env.VITE_ROOT_API + `/eventdata/updateAttendees/` + event._id;
         axios.put(apiURL, { attendee: this.$route.params.id }).then(() => {
           this.clientEvents = [];
           axios
             .get(
               import.meta.env.VITE_ROOT_API +
-                `/eventdata/client/${this.$route.params.id}`
+                `/eventdata/client/${this.$route.params.oid}/${this.$route.params.id}`
             )
             .then((resp) => {
               let data = resp.data;
@@ -338,6 +339,13 @@ export default {
               class="border border-red-700 bg-white text-red-700 rounded"
               @click="$router.go(-1)"
             >Go back</button>
+          </div>
+          <div class="flex justify-between mt-10 mr-20">
+            <button
+              type="reset"
+              class="border border-red-700 bg-black text-red-700 rounded"
+              @click="$router.go(-1)"
+            >DELETE (BETA)</button>
           </div>
         </div>
 

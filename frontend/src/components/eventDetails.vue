@@ -228,7 +228,7 @@
                 <tr
                   @click="editClient(client.attendeeID)"
                   v-for="client in attendeeData"
-                  :key="client._id"
+                  :key="client._id & client.oid"
                 >
                   <td
                     class="p-2 text-left"
@@ -279,7 +279,7 @@ export default {
   beforeMount() {
     axios
       .get(
-        import.meta.env.VITE_ROOT_API + `/eventdata/id/${this.$route.params.id}`
+        import.meta.env.VITE_ROOT_API + `/eventdata/${this.$route.params.oid}/id/${this.$route.params.id}`
       )
       .then((resp) => {
         let data = resp.data[0];
@@ -300,12 +300,13 @@ export default {
           axios
             .get(
               import.meta.env.VITE_ROOT_API +
-                `/primarydata/id/${this.attendeeIDs[i]}`
+                `/primarydata/${this.event.oIDs}/id/${this.attendeeIDs[i]}`
             )
             .then((resp) => {
               let data = resp.data[0];
               this.attendeeData.push({
                 attendeeID: this.attendeeIDs[i],
+                attendeeoIDs: data.oid[i],
                 attendeeFirstName: data.firstName,
                 attendeeLastName: data.lastName,
                 attendeeCity: data.address.city,
