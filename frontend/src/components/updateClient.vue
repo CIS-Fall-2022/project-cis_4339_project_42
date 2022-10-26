@@ -73,7 +73,7 @@ export default {
       )
       .then((resp) => {
         let data = resp.data;
-        resp.data.forEach((event) => {
+        data.forEach((event) => {
           this.clientEvents.push({
             eventName: event.eventName,
             eventDate: event.date,
