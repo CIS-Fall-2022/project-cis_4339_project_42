@@ -318,7 +318,7 @@ router.get("/client/:oid/:id", (req, res, next) => {
 
 //Method 1
 //Delete Event By Event ID
-router.get("/delete/:id", (req, res, next) => { 
+router.delete("/delete/:id", (req, res, next) => { 
     eventdata.findByIdAndDelete({ _id: req.params.id}, (error, data) => {
         if (error) {
             return next(error)
