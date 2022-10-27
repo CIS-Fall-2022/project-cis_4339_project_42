@@ -41,7 +41,7 @@ router.get("/:id", (req, res, next) => {
 
 //Get Single person
 router.get("/id/:id", (req, res, next) => { 
-    primarydata.find({_id: req.params.id }, (error, data) => {
+    primarydata.find({id: req.params.id }, (error, data) => {
     //eventdata.find({oid: String(req.params.oid)}, (error, data) => {
         if (error) {
             return next(error)
