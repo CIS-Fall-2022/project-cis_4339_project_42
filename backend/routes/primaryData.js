@@ -39,11 +39,9 @@ router.get("/:id", (req, res, next) => {
     })
 });
 
-
-//This is the change that happened that I now get information to stay when update
 //Get Single person
 router.get("/id/:id", (req, res, next) => { 
-    primarydata.find({id: String(req.params.id) }, (error, data) => {
+    primarydata.find({id: req.params.id }, (error, data) => {
     //eventdata.find({oid: String(req.params.oid)}, (error, data) => {
         if (error) {
             return next(error)
