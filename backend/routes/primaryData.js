@@ -109,15 +109,14 @@ router.get("/delete/:id", (req, res, next) => {
 
 //GET entries based on search query within an Organization
 //Ex: '...?firstName=Bob&lastName=&searchBy=name' 
-router.get("/search/:oid", (req, res, next) => { 
+router.get("/search/", (req, res, next) => {  //:oid
     let dbQuery = "";
     if (req.query["searchBy"] === 'name') {
-        dbQuery = { firstName: { $regex: `^${req.query["firstName"]}`, $options: "i" }, lastName: { $regex: `^${req.query["lastName"]}`,
-        oid: String(req.params.oid), $options: "i" } }
+        dbQuery = { firstName: { $regex: `^${req.query["firstName"]}`, $options: "i" }, lastName: { $regex: `^${req.query["lastName"]}`} } //oid: String(req.params.oid), $options: "i"
     } else if (req.query["searchBy"] === 'number') {
         dbQuery = {
-            "phoneNumbers.primaryPhone": { $regex: `^${req.query["phoneNumbers.primaryPhone"]}`,
-            oid: String(req.params.oid), $options: "i" }
+            "phoneNumbers.primaryPhone": { $regex: `^${req.query["phoneNumbers.primaryPhone"]}`}
+            //oid: String(req.params.oid), $options: "i" }
         }
     };
     primarydata.find( 
