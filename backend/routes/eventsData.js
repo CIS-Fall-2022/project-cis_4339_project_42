@@ -145,7 +145,7 @@ router.get("/chart/:oid", (req, res, next) => {
   
 
 router.get("/id/:id", (req, res, next) => { 
-  eventdata.find({id: String(req.params.id)}, (error, data) => {
+  eventdata.find({_id: String(req.params.id)}, (error, data) => {
       if (error) {
           return next(error)
       } else {
@@ -156,7 +156,8 @@ router.get("/id/:id", (req, res, next) => {
 
 
 //GET all events for an Organization
-router.get("/:oid", (req, res, next) => { 
+//router.get("/:oid", (req, res, next) => {
+router.get("/oid/:oid", (req, res, next) => { 
     eventdata.find({oid: String(req.params.oid)}, (error, data) => {
         if (error) {
             return next(error)
