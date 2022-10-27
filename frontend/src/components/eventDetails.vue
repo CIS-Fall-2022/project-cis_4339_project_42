@@ -346,7 +346,7 @@ export default {
   validations() {
     return {
       event: {
-        eventName: { required },
+        eventName: { required, alpha },
         date: { required },
       },
     };
