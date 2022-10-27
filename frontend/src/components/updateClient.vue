@@ -85,10 +85,9 @@ export default {
       let data = resp.data;
       for (let i = 0; i < data.length; i++) {
         this.eventData.push({
-          oid: data[i].oid,
           eventName: data[i].eventName,
-          _id: data[i]._id,
-          attendees: data[i].attendees,
+          _id: data[i].attendees,
+          oid: data[i]._id,
         });
       }
     });
