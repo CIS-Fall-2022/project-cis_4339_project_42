@@ -290,21 +290,6 @@ router.put("/:id/:oid", (req, res, next) => {
   );
 });
 
-//PUT Trying to see if work 1st
-router.put("/:id", (req, res, next) => {
-  eventdata.findOneAndUpdate(
-      { _id: req.params.id },
-      req.body,
-      (error, data) => {
-          if (error) {
-              return next(error);
-          } else {
-              res.json(data);
-          }
-      }
-  );
-});
-
 
 //PUT an Attendee in the Event
 router.put("/updateAttendees", (req, res, next) => {
