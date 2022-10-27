@@ -295,7 +295,11 @@ export default {
         this.event.date = DateTime.fromISO(data.date).plus({ days: 1 }).toISODate();
         this.event.description = data.description;
         this.checkedServices = data.services;
-        this.event.address = data.address;
+        this.event.address.line1 = data.address.line1;
+        this.event.address.line2 = data.address.line2;
+        this.event.address.city = data.address.city;
+        this.event.address.county = data.address.county;
+        this.event.address.zip = data.address.zip;
         this.attendeeIDs = data.attendees;
         this.event.oIDs = data.oid;
         if (this.event.oIDs.length <= 0) {
