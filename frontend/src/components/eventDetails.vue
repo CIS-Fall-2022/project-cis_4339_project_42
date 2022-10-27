@@ -286,7 +286,7 @@ export default {
   beforeMount() {
     axios
       .get(
-        import.meta.env.VITE_ROOT_API + `/eventdata/id/${this.$route.params.oid}`
+        import.meta.env.VITE_ROOT_API + `/eventdata/id/${this.$route.params.id}`
       )
       .then((resp) => {
         let data = resp.data[0];
@@ -307,7 +307,7 @@ export default {
           axios
             .get(
               import.meta.env.VITE_ROOT_API +
-                `/primarydata/id/${this.attendeeIDs[i]}`
+                `/primarydata/${this.event.oIDs[i]}/id/${this.attendeeIDs[i]}`
             )
             .then((resp) => {
               let data = resp.data[0];
