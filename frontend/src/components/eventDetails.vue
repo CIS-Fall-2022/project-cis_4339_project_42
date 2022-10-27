@@ -205,6 +205,13 @@
               @click="$router.go(-1)"
             >Go back</button>
           </div>
+          <div class="flex justify-between mt-10 mr-20">
+            <button
+              type="reset"
+              class="border border-red-700 bg-black text-red-700 rounded"
+              @click="$router.go(-1)"
+            >DELETE (BETA)</button>
+          </div>
         </div>
 
         <hr class="mt-10 mb-10" />
@@ -228,7 +235,7 @@
                 <tr
                   @click="editClient(client.attendeeID)"
                   v-for="client in attendeeData"
-                  :key="client._id & client.oid"
+                  :key="client._id"
                 >
                   <td
                     class="p-2 text-left"
@@ -259,7 +266,7 @@ export default {
     return {
       attendeeIDs: [],
       attendeeData: [],
-      oIDs: "",
+      oIDs: [],
       checkedServices: [],
       event: {
         eventName: "",
@@ -300,13 +307,12 @@ export default {
           axios
             .get(
               import.meta.env.VITE_ROOT_API +
-                `/primarydata/${this.event.oIDs}/id/${this.attendeeIDs[i]}`
+                `/primarydata/${this.event.oIDs[i]}/id/${this.attendeeIDs[i]}`
             )
             .then((resp) => {
               let data = resp.data[0];
               this.attendeeData.push({
                 attendeeID: this.attendeeIDs[i],
-                attendeeoIDs: data.oid[i],
                 attendeeFirstName: data.firstName,
                 attendeeLastName: data.lastName,
                 attendeeCity: data.address.city,
