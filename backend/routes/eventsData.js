@@ -143,7 +143,7 @@ router.get("/chart/:oid", (req, res, next) => {
 })
 });
   
-  
+
 
 //GET all events for an Organization
 router.get("/:oid", (req, res, next) => { 
