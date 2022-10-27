@@ -36,6 +36,7 @@ export default {
           county: "",
           zip: "",
         },
+        oid: "",
       },
       // list of events shown in table
       clientEvents: [],
@@ -48,7 +49,7 @@ export default {
     axios
       .get(
         import.meta.env.VITE_ROOT_API +
-          `/primarydata/id/${this.$route.params.id}`
+          `/primarydata/id/${this.$route.params.id}/${this.$route.params.oid}`
       )
       .then((resp) => {
         let data = resp.data[0];
