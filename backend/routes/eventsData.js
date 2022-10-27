@@ -144,7 +144,7 @@ router.get("/chart/:oid", (req, res, next) => {
 });
   
 
-router.get("/id/:id", (req, res, next) => { 
+router.get("/:id", (req, res, next) => { 
   eventdata.find({_id: String(req.params.id)}, (error, data) => {
       if (error) {
           return next(error)
