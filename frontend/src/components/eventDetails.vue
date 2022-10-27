@@ -287,7 +287,7 @@ export default {
     axios
       .get(
         //import.meta.env.VITE_ROOT_API + `/eventdata/${this.$route.params.oid}` //able to get Clients information to stay when Updating
-        import.meta.env.VITE_ROOT_API + `/eventdata/id/${this.$route.params.id}`
+        import.meta.env.VITE_ROOT_API + `/eventdata/id/${this.$route.params.id}` //NOW ABLE TO GET CLIENT & EVENT data to stay when update page
         
       )
       .then((resp) => {
@@ -330,7 +330,7 @@ export default {
     },
     handleEventUpdate() {
       this.event.services = this.checkedServices;
-      let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/${this.id}`;
+      let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/id/${this.id}`;  //`/eventdata/${this.id}` this gave me event details
       axios.put(apiURL, this.event).then(() => {
         alert("Update has been saved.");
         this.$router.back().catch((error) => {

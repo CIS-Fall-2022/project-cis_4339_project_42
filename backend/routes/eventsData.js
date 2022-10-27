@@ -146,7 +146,7 @@ router.get("/chart/:oid", (req, res, next) => {
 
 router.get("/id/:id", (req, res, next) => { 
   //eventdata.find({id: String(req.params.id)}, (error, data) => { Works on keeping data in box
-  eventdata.find({_id: String(req.params.id)}, (error, data) => {
+  eventdata.find({_id: String(req.params.id)}, (error, data) => { //able to get event data to stay when updating
       if (error) {
           return next(error)
       } else {
