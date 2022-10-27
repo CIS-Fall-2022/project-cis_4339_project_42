@@ -146,7 +146,7 @@ router.get("/chart/:oid", (req, res, next) => {
 
 //This is the change that happened that I now get information to stay when update
 router.get("/id/:id", (req, res, next) => { 
-  eventdata.find({id: String(req.params.id)}, (error, data) => {
+  eventdata.find({id: req.params.id}, (error, data) => {
       if (error) {
           return next(error)
       } else {
