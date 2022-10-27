@@ -286,7 +286,7 @@ export default {
   beforeMount() {
     axios
       .get(
-        import.meta.env.VITE_ROOT_API + `/eventdata/${this.$route.params.oid}`
+        import.meta.env.VITE_ROOT_API + `/eventdata/${this.$route.params.oid}` //able to get Clients information to stay when Updating
       )
       .then((resp) => {
         let data = resp.data[0];
