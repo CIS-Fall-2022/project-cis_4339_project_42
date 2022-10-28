@@ -14,7 +14,7 @@ let { organizationData } = require("../models/models");
 //all link to the clients (PrimaryDB)
 
 //GET all organizations
-router.get("/oid/", (req, res, next) => { 
+router.get("/oid", (req, res, next) => { 
     organizationData.find( 
         (error, data) => {
             if (error) {
