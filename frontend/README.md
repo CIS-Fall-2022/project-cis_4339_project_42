@@ -17,3 +17,9 @@ VITE_ROOT_API=http://localhost:3000
 ```
 npm run dev
 ```
+### Example .env variables
+```
+VITE_ROOT_API=http://localhost:3000
+VITE_OID=6335ed4414b89fb274c3dd32
+VITE_ONAME=Organization A
+```
