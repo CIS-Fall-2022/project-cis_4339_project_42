@@ -44,11 +44,9 @@
     <div class="grow w-4/5">
       <section
         class="justify-end items-center h-24 flex"
-        style="
-          background: linear-gradient(250deg, #C8102E 70%, #efecec 50.6%);
-        "
+        style="background: linear-gradient(250deg, #C8102E 70%, #efecec 50.6%);"
       >
-        <h1 class="mr-20 text-3xl text-white">Dataplatform</h1>
+        <h1 class="mr-20 text-3xl text-white">{{orgName}}</h1>
       </section>
       <div>
         <router-view></router-view>
@@ -60,6 +58,11 @@
 <script>
 export default {
   name: "App",
+  data() {
+    return {
+      orgName: import.meta.env.VITE_ONAME,
+    }
+  }
 };
 </script>
 

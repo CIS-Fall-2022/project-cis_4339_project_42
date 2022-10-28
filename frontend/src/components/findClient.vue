@@ -2,6 +2,7 @@
   <main>
     <div>
       <h1 class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10">Find Client</h1>
+      <h2> VITE_OID: {{orgID}}</h2>
     </div>
     <div class="px-10 pt-20">
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10">
@@ -101,6 +102,7 @@ import axios from "axios";
 export default {
   data() {
     return {
+      orgID: import.meta.env.VITE_OID,
       queryData: [],
       //Parameter for search to occur
       searchBy: "",
@@ -110,7 +112,7 @@ export default {
     };
   },
   mounted() {
-    let apiURL = import.meta.env.VITE_ROOT_API + `/primarydata/`;
+    let apiURL = import.meta.env.VITE_ROOT_API + `/primarydata/${this.orgID}`;
     axios.get(apiURL).then((resp) => {
       this.queryData = resp.data;
     });

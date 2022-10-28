@@ -7,9 +7,6 @@
     <div class="flex flex-col col-span-2">
         <table class="min-w-full shadow-md rounded">
           <thead class="bg-gray-50 text-xl">
-            <tr>
-              <th class="p-4 text-left">Organizations</th>
-            </tr>
           </thead>
           <tbody class="divide-y divide-gray-300">
             <!--I connected our Atlas through an embeded code BUT did had to modified the template so that the Chart will display properly-->

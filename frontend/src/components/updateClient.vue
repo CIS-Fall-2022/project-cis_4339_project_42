@@ -13,6 +13,7 @@ export default {
   },
   data() {
     return {
+      orgID: import.meta.env.VITE_OID,
       //for multi select
       eventsChosen: [],
       //for multi select event Data
@@ -36,7 +37,6 @@ export default {
           county: "",
           zip: "",
         },
-        oid: "",
       },
       // list of events shown in table
       clientEvents: [],
@@ -70,7 +70,7 @@ export default {
     axios
       .get(
         import.meta.env.VITE_ROOT_API +
-          `/eventdata/client/${this.$route.params.oid}/${this.$route.params.id}`
+          `/eventdata/client/${this.orgID}/${this.$route.params.id}`
       )
       .then((resp) => {
         let data = resp.data;

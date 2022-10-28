@@ -27,7 +27,7 @@ router.get("/oid/", (req, res, next) => {
 });
 
 
-//Get Single Organization
+/* //Get Single Organization
 router.get("/:id", (req, res, next) => { 
     organizationData.find({_id: String(req.params.id) }, (error, data) => {
     //eventdata.find({oid: String(req.params.oid)}, (error, data) => {
@@ -37,7 +37,7 @@ router.get("/:id", (req, res, next) => {
             res.json(data)
         }
     })
-});
+}); */
 
 //Get Single person
 router.get("/id/:id", (req, res, next) => { 
