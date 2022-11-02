@@ -277,7 +277,7 @@ router.post("/", (req, res, next) => {
 });
 
 //PUT an Event with the provided id and oid
-router.put("/:id/:oid", (req, res, next) => {
+router.put("/:oid/:id", (req, res, next) => {
   eventdata.findOneAndUpdate(
       { _id: req.params.id, oid: String(req.params.oid) },
       req.body,

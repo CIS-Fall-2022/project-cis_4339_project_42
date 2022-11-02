@@ -76,6 +76,7 @@ export default {
         let data = resp.data;
         data.forEach((event) => {
           this.clientEvents.push({
+            //eventID: event._id,
             eventName: event.eventName,
             eventDate: event.date,
           });
@@ -86,8 +87,8 @@ export default {
       for (let i = 0; i < data.length; i++) {
         this.eventData.push({
           eventName: data[i].eventName,
-          _id: data[i].attendees,
-          oid: data[i]._id,
+          _id: data[i]._id,
+          oid: data[i].VITE_OID,
         });
       }
     });
@@ -114,7 +115,7 @@ export default {
           axios
             .get(
               import.meta.env.VITE_ROOT_API +
-                `/eventdata/client/${this.$route.params.oid}/${this.$route.params.id}`
+                `/eventdata/client/${this.orgID}/${this.$route.params.id}` //Need to take a look on 
             )
             .then((resp) => {
               let data = resp.data;
@@ -127,6 +128,11 @@ export default {
         });
       });
     },
+    /*
+    editEvent(eventID) {
+    this.$router.push({ name: "eventdetails", params: { id: eventID } });
+    },
+    */
   },
   validations() {
     return {
@@ -364,7 +370,7 @@ export default {
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-300">
-                <tr v-for="event in clientEvents" :key="event._id">
+                <tr v-for="event in clientEvents" :key="event._id"> <!--@click="editEvent(event._id)" -->
                   <td class="p-2 text-left">{{ event.eventName }}</td>
                   <td class="p-2 text-left">{{ formattedDate(event.eventDate) }}</td>
                 </tr>

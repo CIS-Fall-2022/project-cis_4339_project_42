@@ -266,7 +266,7 @@ export default {
     return {
       attendeeIDs: [],
       attendeeData: [],
-      oIDs: [],
+      orgID: import.meta.env.VITE_OID,
       checkedServices: [],
       event: {
         eventName: "",
@@ -288,7 +288,7 @@ export default {
       .get(
         //import.meta.env.VITE_ROOT_API + `/eventdata/${this.$route.params.oid}` //able to get Clients information to stay when Updating
         import.meta.env.VITE_ROOT_API + `/eventdata/id/${this.$route.params.id}` //NOW ABLE TO GET CLIENT & EVENT data to stay when update page
-        
+        //import.meta.env.VITE_ROOT_API + `/eventdata/${this.$route.params.id}/${this.orgID}`
       )
       .then((resp) => {
         let data = resp.data[0];
@@ -299,11 +299,7 @@ export default {
         this.checkedServices = data.services;
         this.event.address = data.address;
         this.attendeeIDs = data.attendees;
-        this.event.oIDs = data.oid;
-        if (this.event.oIDs.length <= 0) {
-          this.event.oIDs = null
-        }
-        else {
+        this.event.orgID = data.orgID;
 
         for (let i = 0; i < this.attendeeIDs.length; i++) {
           axios
@@ -321,7 +317,7 @@ export default {
                 attendeePhoneNumber: data.phoneNumbers[0].primaryPhone,
               });
             });
-        }}
+        }
       });
   },
   methods: {
@@ -330,7 +326,7 @@ export default {
     },
     handleEventUpdate() {
       this.event.services = this.checkedServices;
-      let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/id/${this.id}`;  //`/eventdata/${this.id}` this gave me event details ---- `/eventdata/id/${this.id}` this gives me Update Box
+      let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/${this.$route.params.id}/${this.orgID}`;  //`/eventdata/${this.id}` this gave me event details ---- `/eventdata/id/${this.id}` this gives me Update Box
       axios.put(apiURL, this.event).then(() => {
         alert("Update has been saved.");
         this.$router.back().catch((error) => {
