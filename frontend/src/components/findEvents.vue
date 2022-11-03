@@ -116,11 +116,11 @@ export default {
       if (this.searchBy === "Event Name") {
         apiURL =
           import.meta.env.VITE_ROOT_API +
-          `/eventdata/search/?eventName=${this.eventName}&searchBy=name`;
+          `/eventdata/search/${this.orgID}/?eventName=${this.eventName}&searchBy=name`;
       } else if (this.searchBy === "Event Date") {
         apiURL =
           import.meta.env.VITE_ROOT_API +
-          `/eventdata/search/?eventDate=${this.eventDate}&searchBy=date`;
+          `/eventdata/search/${this.orgID}/?eventDate=${this.eventDate}&searchBy=date`;
       }
       axios.get(apiURL).then((resp) => {
         this.queryData = resp.data;
@@ -133,7 +133,7 @@ export default {
       this.eventDate = "";
 
       //get all entries
-      let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/`;
+      let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/oid/${this.orgID}`;
       this.queryData = [];
       axios.get(apiURL).then((resp) => {
         this.queryData = resp.data;

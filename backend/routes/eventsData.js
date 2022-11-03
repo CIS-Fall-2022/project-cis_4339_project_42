@@ -237,7 +237,7 @@ router.delete("/delete/:id", (req, res, next) => {
 
 //Method 2
 //Deletes an Event based on the Search
-router.delete("/search/:oid", (req, res, next) => { 
+router.delete("/search/:oid/", (req, res, next) => { 
     let dbQuery = "";
     if (req.query["searchBy"] === 'name') {
         dbQuery = { eventName: { $regex: `^${req.query["eventName"]}`, $options: "i" }, oid: String(req.params.oid) }

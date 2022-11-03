@@ -109,7 +109,7 @@ router.get("/delete/:id", (req, res, next) => {
 
 //GET entries based on search query within an Organization
 //Ex: '...?firstName=Bob&lastName=&searchBy=name' 
-router.get("/search/:oid", (req, res, next) => {  //:oid
+router.get("/search/:oid/", (req, res, next) => {  //:oid
     let dbQuery = "";
     if (req.query["searchBy"] === 'name') {
         dbQuery = { firstName: { $regex: `^${req.query["firstName"]}`, $options: "i" }, lastName: { $regex: `^${req.query["lastName"]}`},
@@ -117,7 +117,7 @@ router.get("/search/:oid", (req, res, next) => {  //:oid
     } else if (req.query["searchBy"] === 'number') {
         dbQuery = {
             "phoneNumbers.primaryPhone": { $regex: `^${req.query["phoneNumbers.primaryPhone"]}`,
-            oid: String(req.params.oid), $options: "i" }
+            oid: String(req.params.oid), $options: "i" } //PhoneNumber not working Need to look at
         }
     };
     primarydata.find( 
