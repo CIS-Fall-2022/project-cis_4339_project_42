@@ -39,12 +39,12 @@
             />
           </label>
         </div>
-        <!-- Displays Client Number search field -->
+        <!-- Displays Client Number search field-- v-model="phoneNumber" -->
         <div class="flex flex-col" v-if="searchBy === 'Client Number'">
           <input
             class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
             type="text"
-            v-model="phoneNumber"
+            v-model="phoneNumbers"
             v-on:keyup.enter="handleSubmitForm"
             placeholder="Enter Client Phone Number"
           />
@@ -108,11 +108,12 @@ export default {
       searchBy: "",
       firstName: "",
       lastName: "",
-      phoneNumber: "",
+      phoneNumbers: "", //phoneNumber
     };
   },
   mounted() {
     let apiURL = import.meta.env.VITE_ROOT_API + `/primarydata/${this.orgID}`;
+    this.queryData = []; //Originally didnt have
     axios.get(apiURL).then((resp) => {
       this.queryData = resp.data;
     });
@@ -128,7 +129,7 @@ export default {
       } else if (this.searchBy === "Client Number") {
         apiURL =
           import.meta.env.VITE_ROOT_API +
-          `/primarydata/search/${this.orgID}/?phoneNumbers.primaryPhone=${this.phoneNumber}&searchBy=number`;
+          `/primarydata/search/${this.orgID}/?phoneNumbers.primaryPhone=${this.phoneNumbers}&searchBy=number`; //Not able to get the 
       }
       axios.get(apiURL).then((resp) => {
         this.queryData = resp.data;
@@ -139,7 +140,7 @@ export default {
       this.searchBy = "";
       this.firstName = "";
       this.lastName = "";
-      this.phoneNumber = "";
+      this.phoneNumbers = ""; //this.phoneNumber
 
       //get all entries
       let apiURL = import.meta.env.VITE_ROOT_API + `/primarydata/${this.orgID}`;
