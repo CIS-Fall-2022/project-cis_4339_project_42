@@ -4,6 +4,9 @@
     <div>
       <h1 class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10">Welcome</h1>
     </div>
+    <div>
+      <h1 class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10"></h1>
+    </div>
     <div class="flex flex-col col-span-2">
         <table class="min-w-full shadow-md rounded">
           <thead class="bg-gray-50 text-xl">
@@ -11,10 +14,10 @@
           <tbody class="divide-y divide-gray-300">
             <!--I connected our Atlas through an embeded code BUT did had to modified the template so that the Chart will display properly-->
             <tr>
-                <td><div>
+                <td><div align="center">
                 <iframe style="background: #FFFFFF;border: none;
                 border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" 
-                width="640" height="480" 
+                width="900" height="700" 
                 src="https://charts.mongodb.com/charts-project-0-meuix/embed/charts?id=6337535c-f5b8-4843-873a-0454b62d36cc&maxDataAge=3600&theme=light&autoRefresh=true">
                 </iframe>
                 </div></td>
@@ -35,7 +38,7 @@ export default {
     return
   },
   mounted() {
-    let apiURL = import.meta.env.VITE_ROOT_API + `/primarydata/oid`;
+    let apiURL = import.meta.env.VITE_ROOT_API + `/primarydata/`;
     axios.get(apiURL).then((resp) => {
       this.queryData = resp.data;
     });

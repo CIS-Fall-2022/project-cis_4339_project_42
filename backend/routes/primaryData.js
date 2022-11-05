@@ -13,6 +13,7 @@ let { organizationData } = require("../models/models");
 //Because our Organization ID and event ID 
 //all link to the clients (PrimaryDB)
 
+/*
 //GET all organizations
 router.get("/oid", (req, res, next) => { 
     organizationData.find( 
