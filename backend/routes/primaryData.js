@@ -97,8 +97,10 @@ router.get(":oid/id/:id", (req, res, next) => {
 });
 
 //To delete client by ID
-router.get("/delete/:id", (req, res, next) => { 
-    primarydata.findByIdAndRemove({ _id: req.params.id }, (error, data) => {
+router.delete("/delete/:id", (req, res, next) => { 
+    primarydata.findByIdAndDelete(
+        { _id: req.params.id }, 
+        (error, data) => {
         if (error) {
             return next(error)
         } else {
@@ -135,10 +137,11 @@ router.get("/search/:oid/", (req, res, next) => {  //:oid
 
 //GET events for a single client
 //Not entirely sure what this endpoint is for
+/*
 router.get("/events/:id", (req, res, next) => { 
     
 });
-
+*/
 //POST a Client with the provided oid from the front end
 router.post("/", (req, res, next) => { 
     primarydata.create( 

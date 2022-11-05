@@ -207,9 +207,9 @@
           </div>
           <div class="flex justify-between mt-10 mr-20">
             <button
-              type="reset"
+              @click="deleteEvent"
+              type="submit"
               class="border border-red-700 bg-black text-red-700 rounded"
-              @click="$router.go(-1)"
             >DELETE (BETA)</button>
           </div>
         </div>
@@ -336,6 +336,15 @@ export default {
     },
     editClient(clientID) {
       this.$router.push({ name: "updateclient", params: { id: clientID } });
+    },
+    deleteEvent() {
+      let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/delete/${this.$route.params.id}`;
+      axios.get(apiURL, this.event).then(() => {
+        alert("Event Deleted.");
+        this.$router.back().catch((error) => {
+          console.log(error);
+        });
+      });
     },
   },
   // sets validations for the various data properties

@@ -67,7 +67,7 @@ export default {
         this.client.address.county = data.address.county;
         this.client.address.zip = data.address.zip;
       });
-    axios
+    axios //this is saying is the breaking point
       .get(
         import.meta.env.VITE_ROOT_API +
           `/eventdata/client/${this.orgID}/${this.$route.params.id}`
@@ -98,7 +98,7 @@ export default {
       return DateTime.fromISO(datetimeDB).plus({ days: 1 }).toLocaleString();
     },
     handleClientUpdate() {
-      let apiURL = import.meta.env.VITE_ROOT_API + `/primarydata/id/${this.id}`; //`/primarydata/${this.id}`<-- original|| `/primarydata/id/${this.id}` able to get update box
+      let apiURL = import.meta.env.VITE_ROOT_API + `/primarydata/${this.$route.params.id}/${this.orgID}`; //`/primarydata/${this.id}`<-- original|| `/primarydata/id/${this.id}` able to get update box
       axios.put(apiURL, this.client).then(() => {
         alert("Update has been saved.");
         this.$router.back().catch((error) => {
@@ -115,6 +115,7 @@ export default {
           axios
             .get(
               import.meta.env.VITE_ROOT_API +
+                //`/primarydata/id/${this.$route.params.id}` GET INVALID DATE
                 `/eventdata/client/${this.orgID}/${this.$route.params.id}` //Need to take a look on 
             )
             .then((resp) => {
@@ -128,12 +129,21 @@ export default {
         });
       });
     },
-    /*
-    editEvent(eventID) {
+    deleteClient() {
+      let apiURL = import.meta.env.VITE_ROOT_API + `/primarydata/delete/${this.$route.params.id}`;
+      axios.get(apiURL, this.client).then(() => {
+        alert("Client Deleted.");
+        this.$router.back().catch((error) => {
+          console.log(error);
+        });
+      });
+    },
+  },
+  /*
+  editEvent(eventID) {
     this.$router.push({ name: "eventdetails", params: { id: eventID } });
     },
     */
-  },
   validations() {
     return {
       client: {
@@ -348,10 +358,10 @@ export default {
           </div>
           <div class="flex justify-between mt-10 mr-20">
             <button
-              type="reset"
-              class="border border-red-700 bg-black text-red-700 rounded"
-              @click="$router.go(-1)"
-            >DELETE (BETA)</button>
+              @click="deleteClient"
+              type="submit"
+              class="bg-red-700 text-white rounded"
+            >DELETE Client</button>
           </div>
         </div>
 
