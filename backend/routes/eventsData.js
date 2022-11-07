@@ -106,7 +106,7 @@ router.get("/chart/:oid", (req, res, next) => {
         'Attendees': '$__alias_0', 
         'Date': '$__alias_1', 
         'Name': '$__alias_2', 
-        '_id': 0
+
       }
     }, {
       '$group': {
