@@ -16,7 +16,7 @@
             <tr>
                 <td><div align="center">
                 <iframe style="background: #FFFFFF;border: none; border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" 
-                width="900" height="700" 
+                width="700" height="500" 
                 src="https://charts.mongodb.com/charts-project-0-meuix/embed/charts?id=6337535c-f5b8-4843-873a-0454b62d36cc&maxDataAge=3600&theme=light&autoRefresh=true">
                 </iframe>
                 </div>
@@ -33,16 +33,16 @@
         <table class="min-w-full shadow-md rounded">
           <thead class="bg-gray-50 text-xl">
             <tr>
-              <th class="p-4 text-left">Attendees</th>
               <th class="p-4 text-left">Date</th>
               <th class="p-4 text-left">Event Name</th>
+              <th class="p-4 text-left">Attendees</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-300">
             <tr v-for="event,index in queryData" :key="event">
-              <td class="p-2 text-left">{{ queryData[index].Attendees }}</td>
               <td class="p-2 text-left"> Month: {{ queryData[index].Date.month }} Year: {{ queryData[index].Date.year }}</td>
               <td class="p-2 text-left">{{ queryData[index].Name }}</td>
+              <td class="p-2 text-left">{{ queryData[index].Attendees }}</td>
             </tr>
           </tbody>
         </table>
