@@ -128,8 +128,6 @@ router.get("/chart/:oid", (req, res, next) => {
       '$replaceRoot': {
         'newRoot': '$__grouped_docs'
       }
-    }, {
-      '$limit': 5000
     }
   ];
 
