@@ -23,7 +23,7 @@ router.get("/chart/:oid", (req, res, next) => {
 
   //Holds the current and past dates to be used in the aggregation
   var currentDate = new Date();
-  var pastDate = currentDate.getMonth() - 2;
+  var pastDate = new Date().setMonth(currentDate.getMonth() - 2);
 
   //Holds the aggregation
   const agg = [
@@ -103,9 +103,9 @@ router.get("/chart/:oid", (req, res, next) => {
       }
     }, {
       '$project': {
-        'Number of Attendees': '$__alias_0', 
+        'Attendees': '$__alias_0', 
         'Date': '$__alias_1', 
-        'Event Name': '$__alias_2', 
+        'Name': '$__alias_2', 
         '_id': 0
       }
     }, {
