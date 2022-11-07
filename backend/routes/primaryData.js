@@ -119,9 +119,8 @@ router.get("/search/:oid/", (req, res, next) => {  //:oid
         oid: String(req.params.oid), $options: "i" }
     } else if (req.query["searchBy"] === 'number') {
         dbQuery = {
-            "phoneNumbers.primaryPhone": { $regex: `^${req.query["phoneNumbers.primaryPhone"]}`,
+            "phoneNumbers.primaryPhone": { $regex: `^${req.query["phoneNumbers.primaryPhone"]}`},
             oid: String(req.params.oid), $options: "i" } //PhoneNumber not working Need to look at
-        }
     };
     primarydata.find( 
         dbQuery, 
