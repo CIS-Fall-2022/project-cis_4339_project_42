@@ -105,8 +105,7 @@ router.get("/chart/:oid", (req, res, next) => {
       '$project': {
         'Attendees': '$__alias_0', 
         'Date': '$__alias_1', 
-        'Name': '$__alias_2', 
-
+        'Name': '$__alias_2' 
       }
     }, {
       '$group': {
@@ -224,7 +223,7 @@ router.get("/client/:oid/:id", (req, res, next) => {
 //Method 1
 //Delete Event By Event ID
 router.delete("/delete/:id", (req, res, next) => { 
-    eventdata.findByIdAndDelete({ _id: req.params.id}, (error, data) => {
+    eventdata.findByIdAndDelete({ _id: String(req.params.id) }, (error, data) => {
         if (error) {
             return next(error)
         } else {

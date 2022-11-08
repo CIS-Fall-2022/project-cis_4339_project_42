@@ -112,7 +112,7 @@ export default {
     };
   },
   mounted() {
-    let apiURL = import.meta.env.VITE_ROOT_API + `/primarydata/`;
+    let apiURL = import.meta.env.VITE_ROOT_API + `/primarydata/${this.orgID}`;
     this.queryData = []; //Originally didnt have
     axios.get(apiURL).then((resp) => {
       this.queryData = resp.data;

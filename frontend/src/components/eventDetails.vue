@@ -209,8 +209,8 @@
             <button
               @click="deleteEvent"
               type="submit"
-              class="border border-red-700 bg-black text-red-700 rounded"
-            >DELETE (BETA)</button>
+              class="bg-red-700 text-white rounded"
+            >DELETE Event</button>
           </div>
         </div>
 
@@ -339,7 +339,7 @@ export default {
     },
     deleteEvent() {
       let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/delete/${this.$route.params.id}`;
-      axios.get(apiURL, this.event).then(() => {
+      axios.delete(apiURL, this.event).then(() => {
         alert("Event Deleted.");
         this.$router.back().catch((error) => {
           console.log(error);
