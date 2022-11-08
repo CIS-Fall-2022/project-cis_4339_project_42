@@ -40,7 +40,7 @@
           </thead>
           <tbody class="divide-y divide-gray-300">
             <tr v-for="event,index in queryData" :key="event">
-              <td class="p-2 text-left"> Month: {{ queryData[index].Date.month }} Year: {{ queryData[index].Date.year }}</td>
+              <td class="p-2 text-left"> Month: {{ queryData[index].Date.month+1}} Year: {{ queryData[index].Date.year }}</td>
               <td class="p-2 text-left">{{ queryData[index].Name }}</td>
               <td class="p-2 text-left">{{ queryData[index].Attendees }}</td>
             </tr>
