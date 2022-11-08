@@ -115,8 +115,9 @@ export default {
           axios
             .get(
               import.meta.env.VITE_ROOT_API +
-                //`/primarydata/id/${this.$route.params.id}` GET INVALID DATE
+                //`/primarydata/${this.$route.params.id}/${this.orgID}` //GET INVALID DATE
                 `/eventdata/client/${this.orgID}/${this.$route.params.id}` //Need to take a look on 
+                //`/primarydata/id/${this.$route.params.id}` //GET INVALID DATE
             )
             .then((resp) => {
               let data = resp.data;
@@ -131,7 +132,7 @@ export default {
     },
     deleteClient() {
       let apiURL = import.meta.env.VITE_ROOT_API + `/primarydata/delete/${this.$route.params.id}`;
-      axios.get(apiURL, this.client).then(() => {
+      axios.delete(apiURL, this.client).then(() => {
         alert("Client Deleted.");
         this.$router.back().catch((error) => {
           console.log(error);
