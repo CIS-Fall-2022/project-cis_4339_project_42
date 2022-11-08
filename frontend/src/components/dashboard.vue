@@ -61,7 +61,9 @@ export default {
   mounted() {
     let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/chart/${this.orgID}`;
     axios.get(apiURL).then((resp) => {
-      this.queryData = resp.data;
+      this.queryData = resp.data.sort(function(a, b){
+            return b.Attendees - a.Attendees;
+          })
     });
     window.scrollTo(0, 0);
   },
