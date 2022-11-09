@@ -98,10 +98,8 @@ router.get(":oid/id/:id", (req, res, next) => {
 });
 
 //To delete client by ID
-router.get("/delete/:id", (req, res, next) => { 
-    primarydata.findByIdAndDelete(
-        { _id: String(req.params.id) }, 
-        (error, data) => {
+router.delete("/delete/:id", (req, res, next) => { 
+    primarydata.findByIdAndDelete({ _id: String(req.params.id) }, (error, data) => {
         if (error) {
             return next(error)
         } else {
