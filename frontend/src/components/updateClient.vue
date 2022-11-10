@@ -70,6 +70,7 @@ export default {
     axios //this is saying is the breaking point
       .get(
         import.meta.env.VITE_ROOT_API +
+          //`/eventdata/id/${this.$route.params.id}`
           `/eventdata/client/${this.orgID}/${this.$route.params.id}`
       )
       .then((resp) => {
@@ -88,7 +89,8 @@ export default {
         this.eventData.push({
           eventName: data[i].eventName,
           _id: data[i]._id,
-          oid: data[i].VITE_OID,
+          //oid: data[i].VITE_OID,
+          attendees: data[i].attendees,
         });
       }
     });
@@ -106,6 +108,17 @@ export default {
         });
       });
     },
+    editEvent() {
+      let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/id/${this.$route.params.id}`
+      axios.get(apiURL, this.event).then(() => {
+        alert("Press OK to continue.");
+        this.$router.back().catch((error) => {
+          console.log(error);
+        });
+      });
+      
+      //this.$router.push({ name: "updateclient", params: { id: clientID } });
+    },
     addToEvent() {
       this.eventsChosen.forEach((event) => {
         let apiURL =
@@ -114,18 +127,19 @@ export default {
           this.clientEvents = [];
           axios
             .get(
-              import.meta.env.VITE_ROOT_API +
-                //`/eventdata/`
-                //`/primarydata/${this.$route.params.id}/${this.orgID}` //GET INVALID DATE
+              import.meta.env.VITE_ROOT_API +  
+                //`/eventdata/` Able to get all events back
+                //`/primarydata/events/${this.$route.params.id}` //GET INVALID DATE
                 `/eventdata/client/${this.orgID}/${this.$route.params.id}` //Need to take a look on 
-                //`/primarydata/id/${this.$route.params.id}` //GET INVALID DATE
+                //`/eventdata/id/${this.$route.params.id}` //Get 200 after PUT 
             )
             .then((resp) => {
               let data = resp.data;
               for (let i = 0; i < data.length; i++) {
                 this.clientEvents.push({
                   eventName: data[i].eventName,
-                  eventDate: data[i].date
+                  eventDate: data[i].date,
+                  oid: data[i].VITE_OID,
                 });
               }
             });
@@ -142,11 +156,6 @@ export default {
       });
     },
   },
-  /*
-  editEvent(eventID) {
-    this.$router.push({ name: "eventdetails", params: { id: eventID } });
-    },
-    */
   validations() {
     return {
       client: {
@@ -383,7 +392,9 @@ export default {
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-300">
-                <tr v-for="event in clientEvents" :key="event._id"> <!--@click="editEvent(event._id)" -->
+                <tr
+                  @click="editEvent(event._id)" 
+                  v-for="event in clientEvents" :key="event._id"> <!--@click="editEvent(event._id)" -->
                   <td class="p-2 text-left">{{ event.eventName }}</td>
                   <td class="p-2 text-left">{{ formattedDate(event.eventDate) }}</td>
                 </tr>
