@@ -7,10 +7,12 @@
     <div>
       <h1 class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10"></h1>
     </div>
-    <div class="chart-container" style="position: relative; height:min-content; width:max-content;">
-      <BarChart/>
+    <div class="center">
+      <div class="chart-container" style="position: relative; height:min-content; width: min-content;">
+        <BarChart/>
+        
+      </div>
     </div>
-
     <div>
       {{chartData}}
     </div>
@@ -54,8 +56,12 @@
   </main>
 </template>
 <script>
-  import axios from "axios";
+import BarChart from '../components/chart.vue'
+import axios from "axios";
+
 export default {
+  name: 'App',
+  components: { BarChart },
   data() {
     return {
       queryData: [],
