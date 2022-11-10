@@ -7,12 +7,19 @@
     <div>
       <h1 class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10"></h1>
     </div>
-    <div class="flex flex-col col-span-2">
+    <div class="chart-container" style="position: relative; height:min-content; width:max-content;">
+      <BarChart/>
+    </div>
+
+    <div>
+      {{chartData}}
+    </div>
+<!--     <div class="flex flex-col col-span-2">
         <table class="min-w-full shadow-md rounded">
           <thead class="bg-gray-50 text-xl">
           </thead>
           <tbody class="divide-y divide-gray-300">
-            <!--I connected our Atlas through an embeded code BUT did had to modified the template so that the Chart will display properly-->
+            I connected our Atlas through an embeded code BUT did had to modified the template so that the Chart will display properly
             <tr>
                 <td><div align="center">
                 <iframe style="background: #FFFFFF;border: none; border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" 
@@ -22,13 +29,10 @@
                 </div>
                 </td>
             </tr>
-            <!--<tr @click="editClient(client._id)" v-for="client in queryData" :key="client._id">
-              <td class="p-2 text-left">{{ client.orgName }}</td>
-            </tr>
-            -->
+
           </tbody>
         </table>
-      </div>
+      </div> -->
       <div class="flex flex-col col-span-2">
         <table class="min-w-full shadow-md rounded">
           <thead class="bg-gray-50 text-xl">
@@ -55,6 +59,10 @@ export default {
   data() {
     return {
       queryData: [],
+      chartData: {
+        labels: [],
+        datasets: [{ data: [] }]
+      },
       orgID: import.meta.env.VITE_OID
     }
   },
@@ -64,6 +72,11 @@ export default {
       this.queryData = resp.data.sort(function(a, b){
             return b.Attendees - a.Attendees;
           })
+        resp.data.forEach((item) => {
+          this.chartData.labels.push(item.Name)
+          this.chartData.datasets[0]['data'].push(item.Attendees)
+
+      });
     });
     window.scrollTo(0, 0);
   },
