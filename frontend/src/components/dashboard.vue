@@ -13,7 +13,7 @@
         
       </div>
     </div>
-    <div>
+    <div class="hidden">
       {{chartData}}
     </div>
 <!--     <div class="flex flex-col col-span-2">
