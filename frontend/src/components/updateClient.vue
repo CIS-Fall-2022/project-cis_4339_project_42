@@ -82,7 +82,7 @@ export default {
           });
         });
       });
-    axios.get(import.meta.env.VITE_ROOT_API + `/eventdata`).then((resp) => {
+    axios.get(import.meta.env.VITE_ROOT_API + `/eventdata/`).then((resp) => {
       let data = resp.data;
       for (let i = 0; i < data.length; i++) {
         this.eventData.push({
@@ -109,12 +109,13 @@ export default {
     addToEvent() {
       this.eventsChosen.forEach((event) => {
         let apiURL =
-          import.meta.env.VITE_ROOT_API + `/eventdata/updateAttendees/` + event._id;
+          import.meta.env.VITE_ROOT_API + `/eventdata/addAttendee/` + event._id;
         axios.put(apiURL, { attendee: this.$route.params.id }).then(() => {
           this.clientEvents = [];
           axios
             .get(
               import.meta.env.VITE_ROOT_API +
+                //`/eventdata/`
                 //`/primarydata/${this.$route.params.id}/${this.orgID}` //GET INVALID DATE
                 `/eventdata/client/${this.orgID}/${this.$route.params.id}` //Need to take a look on 
                 //`/primarydata/id/${this.$route.params.id}` //GET INVALID DATE
@@ -124,6 +125,7 @@ export default {
               for (let i = 0; i < data.length; i++) {
                 this.clientEvents.push({
                   eventName: data[i].eventName,
+                  eventDate: data[i].date
                 });
               }
             });

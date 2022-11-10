@@ -206,7 +206,7 @@ router.get("/search/:oid", (req, res, next) => { //:oid
 //GET events for which a client is signed up to in an Organization
 router.get("/client/:oid/:id", (req, res, next) => { 
     eventdata.find( 
-        { attendees: req.params.id, oid: String(req.params.oid) }, 
+        { attendees: String(req.params.id), oid: String(req.params.oid) }, 
         (error, data) => { 
             if (error) {
                 return next(error);
@@ -304,7 +304,7 @@ router.put("/updateAttendees/", (req, res, next) => {
   );
 });
 
-/*
+
 //PUT add attendee to event
 router.put("/addAttendee/:id", (req, res, next) => {
     //only add attendee if not yet signed uo
@@ -315,7 +315,7 @@ router.put("/addAttendee/:id", (req, res, next) => {
                 return next(error);
             } else {
                 if (data.length == 0) {
-                    eventdata.updateOne(
+                    eventdata.findOneAndUpdate(
                         { _id: req.params.id }, 
                         { $push: { attendees: req.body.attendee } },
                         (error, data) => {
@@ -334,5 +334,5 @@ router.put("/addAttendee/:id", (req, res, next) => {
     );
     
 });
-*/
+
 module.exports = router;
