@@ -144,6 +144,7 @@ export default {
               }
             });
         });
+        this.eventsChosen = [];
       });
     },
     deleteClient() {
