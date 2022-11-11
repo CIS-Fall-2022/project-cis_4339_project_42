@@ -7,8 +7,8 @@
     <div>
       <h1 class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10"></h1>
     </div>
-    <div class="center">
-      <div class="chart-container" style="position: relative; height:min-content; width: min-content;">
+    <div class="container mx-auto h-3/6 w-3/6">
+      <div class="chart-container">
         <BarChart/>
         
       </div>
