@@ -137,7 +137,14 @@ router.get("/search/:oid/", (req, res, next) => {  //:oid
 //Not entirely sure what this endpoint is for
 /*
 router.get("/events/:id", (req, res, next) => { 
-    
+    eventdata.find({_id: req.params.id }, (error, data) => {
+    //eventdata.find({oid: String(req.params.oid)}, (error, data) => {
+        if (error) {
+            return next(error)
+        } else {
+            res.json(data)
+        }
+    })
 });
 */
 //POST a Client with the provided oid from the front end
