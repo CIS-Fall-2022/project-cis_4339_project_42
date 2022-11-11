@@ -23,7 +23,7 @@ export default {
         datasets: [
           {
             label: 'Attendees',
-            backgroundColor: '#f87979',
+            backgroundColor: '#c8102e',
             data: []
           }
         ]
