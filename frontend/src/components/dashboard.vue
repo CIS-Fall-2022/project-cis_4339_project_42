@@ -5,9 +5,9 @@
       <h1 class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10">Welcome</h1>
     </div>
     <div>
-      <h1 class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10"></h1>
+      <h1 class="font-bold text-xl text-red-700 tracking-widest text-center mt-10"></h1>
     </div>
-    <div class="container mx-auto h-3/6 w-3/6">
+    <div class="container mx-auto h-3/6 w-1/3">
       <div class="chart-container">
         <BarChart/>
         
@@ -16,43 +16,35 @@
     <div class="hidden">
       {{chartData}}
     </div>
-<!--     <div class="flex flex-col col-span-2">
-        <table class="min-w-full shadow-md rounded">
-          <thead class="bg-gray-50 text-xl">
-          </thead>
-          <tbody class="divide-y divide-gray-300">
-            I connected our Atlas through an embeded code BUT did had to modified the template so that the Chart will display properly
-            <tr>
-                <td><div align="center">
-                <iframe style="background: #FFFFFF;border: none; border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" 
-                width="700" height="500" 
-                src="https://charts.mongodb.com/charts-project-0-meuix/embed/charts?id=6337535c-f5b8-4843-873a-0454b62d36cc&maxDataAge=3600&theme=light&autoRefresh=true">
-                </iframe>
-                </div>
-                </td>
-            </tr>
-
-          </tbody>
-        </table>
-      </div> -->
+    <hr class="mt-10 mb-10" />
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10">
+      <div class="ml-10">
+        <h2 class="text-2xl font-bold">List of Events</h2>
+        <h3 class="italic">The Month and Year</h3>
+      </div>
       <div class="flex flex-col col-span-2">
         <table class="min-w-full shadow-md rounded">
-          <thead class="bg-gray-50 text-xl">
+          <thead class="bg-gray-50 text-x2">
             <tr>
               <th class="p-4 text-left">Date</th>
-              <th class="p-4 text-left">Event Name</th>
-              <th class="p-4 text-left">Attendees</th>
+              <th class="p-4 text-center">Eveny Name</th>
+              <th class="p-4 text-center">Attendees</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-gray-300">
-            <tr v-for="event,index in queryData" :key="event">
-              <td class="p-2 text-left"> Month: {{ queryData[index].Date.month+1}} Year: {{ queryData[index].Date.year }}</td>
-              <td class="p-2 text-left">{{ queryData[index].Name }}</td>
-              <td class="p-2 text-left">{{ queryData[index].Attendees }}</td>
+            <tr 
+              v-for="event,index in queryData" :key="event"
+            >
+              <td
+                class="p-2 text-left "
+              >{{ queryData[index].Date.month+1 + "/" + queryData[index].Date.year }}</td> <!--queryData[index].Date.month+1 + " " + " " + queryData[index].Date.year-->
+              <td class="p-2 text-center">{{ queryData[index].Name }}</td>
+              <td class="p-2 text-center">{{ queryData[index].Attendees }}</td>
             </tr>
           </tbody>
         </table>
       </div>
+    </div>
   </main>
 </template>
 <script>
