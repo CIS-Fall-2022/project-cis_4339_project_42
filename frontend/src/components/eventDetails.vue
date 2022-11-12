@@ -341,7 +341,8 @@ export default {
       let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/delete/${this.$route.params.id}`;
       axios.delete(apiURL, this.event).then(() => {
         alert("Event Deleted.");
-        this.$router.back().catch((error) => {
+        //Trying to get the error message to display when things go south
+        this.$router.back().catch((error) => { ////.catch(error => {error => this.status = error.response.data.status; console.log(error.response.data); console.log(error.response.status);console.log(error.response.headers);
           console.log(error);
         });
       });
