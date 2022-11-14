@@ -35,16 +35,17 @@
         <table class="w-full text-sm text-left border border-slate-900">
           <thead class="font-bold text-sm dark:text-white uppercase" style="background-color: #C8102E;">
             <tr>
-              <th class="p-4 text-center">Date</th>
-              <th class="p-4 text-center">Event Name</th>
               <th class="p-4 text-center">Attendees</th>
+              <th class="p-4 text-center">Event Name</th>
+              <th class="p-4 text-center">Date</th>
+              
             </tr>
           </thead>
           <tbody class="border border-slate-900">
-            <tr class="font-medium" v-for="event,index in queryData" :key="event">
-              <td class="p-3 text-center dark:text-black uppercase"> {{ new Date(queryData[index].Date).toUTCString().slice(0, -12) }}</td>
-              <td class="p-3 text-center dark:text-black uppercase"> {{ queryData[index].Name }}</td>
+            <tr class="font-medium border-spacing-2 border border-slate-300" v-for="event,index in queryData" :key="event">
               <td class="p-3 text-center dark:text-black uppercase"> {{ queryData[index].Attendees }}</td>
+              <td class="p-3 text-center dark:text-black uppercase"> {{ queryData[index].Name }}</td>
+              <td class="p-3 text-center dark:text-black uppercase"> {{ new Date(queryData[index].Date).toUTCString().slice(0, -12) }}</td>
             </tr>
           </tbody>
         </table>
