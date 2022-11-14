@@ -10,11 +10,7 @@
     <div class="container mx-auto h-3/6 w-3/6">
       <div class="chart-container">
         <BarChart/>
-        
       </div>
-    </div>
-    <div class="hidden">
-      {{chartData}}
     </div>
 <!--     <div class="flex flex-col col-span-2">
         <table class="min-w-full shadow-md rounded">
@@ -35,20 +31,20 @@
           </tbody>
         </table>
       </div> -->
-      <div class="flex flex-col col-span-2">
-        <table class="min-w-full shadow-md rounded">
-          <thead class="bg-gray-50 text-xl">
+      <div class="flex flex-col col-span-2 mx-auto h-5/6 w-4/6 border border-slate-900">
+        <table class="w-full text-sm text-left border border-slate-900">
+          <thead class="font-bold text-sm dark:text-white uppercase" style="background-color: #C8102E;">
             <tr>
-              <th class="p-4 text-left">Date</th>
-              <th class="p-4 text-left">Event Name</th>
-              <th class="p-4 text-left">Attendees</th>
+              <th class="p-4 text-center">Date</th>
+              <th class="p-4 text-center">Event Name</th>
+              <th class="p-4 text-center">Attendees</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-gray-300">
-            <tr v-for="event,index in queryData" :key="event">
-              <td class="p-2 text-left"> Month: {{ queryData[index].Date.month+1}} Year: {{ queryData[index].Date.year }}</td>
-              <td class="p-2 text-left">{{ queryData[index].Name }}</td>
-              <td class="p-2 text-left">{{ queryData[index].Attendees }}</td>
+          <tbody class="border border-slate-900">
+            <tr class="font-medium" v-for="event,index in queryData" :key="event">
+              <td class="p-3 text-center dark:text-black uppercase"> {{ new Date(queryData[index].Date).toUTCString().slice(0, -12) }}</td>
+              <td class="p-3 text-center dark:text-black uppercase"> {{ queryData[index].Name }}</td>
+              <td class="p-3 text-center dark:text-black uppercase"> {{ queryData[index].Attendees }}</td>
             </tr>
           </tbody>
         </table>
@@ -90,6 +86,6 @@ export default {
     routePush(routeName) {
       this.$router.push({ name: routeName });
     },
-  },
+  }
 };
 </script>

@@ -87,7 +87,7 @@ router.get("/chart/:oid", (req, res, next) => {
     }, {
       '$group': {
         '_id': {
-          '__alias_1': '$__alias_1', 
+          '__alias_1': '$date', 
           '__alias_2': '$eventName'
         }, 
         '__alias_0': {
