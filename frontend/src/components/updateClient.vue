@@ -111,11 +111,13 @@ export default {
     editEvent() {
       let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/id/${this.$route.params.id}`
       axios.get(apiURL, this.event).then(() => {
-        //alert("Press OK to continue.");
+        alert("Press OK to continue.");
         this.$router.back().catch((error) => {
           console.log(error);
         });
       });
+      
+      //this.$router.push({ name: "updateclient", params: { id: clientID } });
     },
     addToEvent() {
       this.eventsChosen.forEach((event) => {
@@ -160,12 +162,7 @@ export default {
       client: {
         firstName: { required, alpha },
         lastName: { required, alpha },
-        email: { required, email },
-        address: {
-          line1: { required },
-          city: { required },
-          zip: { required, numeric }
-        },
+        email: { email },
         phoneNumbers: [
           {
             primaryPhone: { required, numeric },
@@ -244,7 +241,6 @@ export default {
           <div class="flex flex-col">
             <label class="block">
               <span class="text-gray-700">Email</span>
-              <span style="color:#ff0000">*</span>
               <input
                 type="email"
                 class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
@@ -301,19 +297,11 @@ export default {
           <div class="flex flex-col">
             <label class="block">
               <span class="text-gray-700">Address Line 1</span>
-              <span style="color:#ff0000">*</span>
               <input
                 type="text"
                 class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 v-model="client.address.line1"
               />
-              <span class="text-black" v-if="v$.client.address.line1.$error">
-                <p
-                  class="text-red-700"
-                  v-for="error of v$.client.address.line1.$errors"
-                  :key="error.$uid"
-                >{{ error.$message }}!</p>
-              </span>
             </label>
           </div>
           <!-- form field -->
@@ -337,13 +325,6 @@ export default {
                 class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 v-model="client.address.city"
               />
-              <span class="text-black" v-if="v$.client.address.city.$error">
-                <p
-                  class="text-red-700"
-                  v-for="error of v$.client.address.city.$errors"
-                  :key="error.$uid"
-                >{{ error.$message }}!</p>
-              </span>
             </label>
           </div>
           <div></div>
@@ -362,19 +343,11 @@ export default {
           <div class="flex flex-col">
             <label class="block">
               <span class="text-gray-700">Zip Code</span>
-              <span style="color:#ff0000">*</span>
               <input
                 type="text"
                 class="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 v-model="client.address.zip"
               />
-              <span class="text-black" v-if="v$.client.address.zip.$error">
-                <p
-                  class="text-red-700"
-                  v-for="error of v$.client.address.zip.$errors"
-                  :key="error.$uid"
-                >{{ error.$message }}!</p>
-              </span>
             </label>
           </div>
           <div></div>
