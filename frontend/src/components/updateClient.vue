@@ -77,7 +77,7 @@ export default {
         let data = resp.data;
         data.forEach((event) => {
           this.clientEvents.push({
-            //eventID: event._id,
+            _id: event._id, //This allowed me to click on the Events in Update Client Page
             eventName: event.eventName,
             eventDate: event.date,
           });
@@ -108,15 +108,16 @@ export default {
         });
       });
     },
+    /*
     editEvent() {
-      let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/id/${this.$route.params.id}`
+      let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/oid/${this.$route.params.id}` //${this.$route.params.id}
       axios.get(apiURL, this.event).then(() => {
-        //alert("Press OK to continue.");
+        alert("Do you wish to continue?");
         this.$router.back().catch((error) => {
           console.log(error);
         });
       });
-    },
+    },*/
     addToEvent() {
       this.eventsChosen.forEach((event) => {
         let apiURL =
@@ -144,6 +145,9 @@ export default {
         });
         this.eventsChosen = [];
       });
+    },
+    editEvent(eventID) {
+      this.$router.push({ name: "eventdetails", params: { id: eventID } });
     },
     deleteClient() {
       let apiURL = import.meta.env.VITE_ROOT_API + `/primarydata/delete/${this.$route.params.id}`;

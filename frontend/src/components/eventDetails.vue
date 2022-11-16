@@ -275,7 +275,7 @@
 </template>
 <script>
 import useVuelidate from "@vuelidate/core";
-import { required, email, alpha, numeric } from "@vuelidate/validators";
+import { required, alpha, numeric } from "@vuelidate/validators";
 import axios from "axios";
 import { DateTime } from "luxon";
 
@@ -322,7 +322,7 @@ export default {
         this.event.address = data.address;
         this.attendeeIDs = data.attendees;
         this.event.orgID = data.orgID;
-
+        
         for (let i = 0; i < this.attendeeIDs.length; i++) {
           axios
             .get(
