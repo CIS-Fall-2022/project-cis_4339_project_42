@@ -120,6 +120,10 @@ export default {
     },*/
     addToEvent() {
       this.eventsChosen.forEach((event) => {
+        if (this.eventsChosen.includes(event)) {
+                  alert("Client is already an Attendee")
+                  
+        } else {
         let apiURL =
           import.meta.env.VITE_ROOT_API + `/eventdata/updateAttendees/`;
         axios.put(apiURL, { _id: event._id, attendee: this.$route.params.id }).then(() => {
@@ -135,6 +139,9 @@ export default {
             .then((resp) => {
               let data = resp.data;
               for (let i = 0; i < data.length; i++) {
+
+              
+
                 this.clientEvents.push({
                   eventName: data[i].eventName,
                   eventDate: data[i].date,
@@ -144,6 +151,7 @@ export default {
             });
         });
         this.eventsChosen = [];
+      }
       });
     },
     editEvent(eventID) {
