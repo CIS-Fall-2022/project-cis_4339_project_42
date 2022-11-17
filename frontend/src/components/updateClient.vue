@@ -105,6 +105,7 @@ export default {
         alert("Update has been saved.");
         this.$router.back().catch((error) => {
           console.log(error);
+          alert('An Error has Occured, please try again.')
         });
       });
     },
@@ -121,7 +122,7 @@ export default {
     addToEvent() {
       this.eventsChosen.forEach((event) => {
         if (this.eventsChosen.includes(event)) {
-                  alert("Client is already an Attendee")
+          alert("Client is already an Attendee")
                   
         } else {
         let apiURL =
@@ -139,8 +140,6 @@ export default {
             .then((resp) => {
               let data = resp.data;
               for (let i = 0; i < data.length; i++) {
-
-              
 
                 this.clientEvents.push({
                   eventName: data[i].eventName,
@@ -163,6 +162,7 @@ export default {
         alert("Client Deleted.");
         this.$router.back().catch((error) => {
           console.log(error);
+          alert('An Error has Occured, please try again.')
         });
       });
     },

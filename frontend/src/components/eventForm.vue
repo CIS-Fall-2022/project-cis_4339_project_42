@@ -277,6 +277,7 @@ export default {
           })
           .catch((error) => {
             console.log(error);
+            alert('An Error has Occured, please try again.')
           });
       }
     },
