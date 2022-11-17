@@ -59,7 +59,7 @@
           </tbody>
         </table>
         </div> -->
-      <div class="flex flex-col col-span-2 mx-auto h-5/6 w-4/6 border border-slate-900">
+      <div class="flex flex-col col-span-2 mx-auto h-6/6 w-5/6 border border-slate-900">
         <table class="w-full text-sm text-left border border-slate-900">
           <thead class="font-bold text-sm dark:text-white uppercase" style="background-color: #C8102E;">
             <tr>
