@@ -82,7 +82,7 @@ export default {
           });
         });
       });
-    axios.get(import.meta.env.VITE_ROOT_API + `/eventdata/`).then((resp) => {
+    axios.get(import.meta.env.VITE_ROOT_API + `/eventdata/oid/${this.orgID}`).then((resp) => {
       let data = resp.data;
       for (let i = 0; i < data.length; i++) {
         this.eventData.push({
