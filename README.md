@@ -25,7 +25,7 @@ VITE_OID=6335ed4414b89fb274c3dd32
 VITE_ONAME=Organization A
 PORT=3000
 ```
-(Organization A Environment)
+(Organization B Environment)
 ```
 VITE_ROOT_API=http://localhost:3000
 MONGO_URL= mongodb+srv://admin:VKBNbpHqRPTwC4t0@cis-4339.fzizdes.mongodb.net/CIS-4339
