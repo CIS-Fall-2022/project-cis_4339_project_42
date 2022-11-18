@@ -154,8 +154,6 @@ export default {
             }
           })
         })
-        console.log(this.clientEvents)
-        console.log(this.eventsChosen)
         this.eventsChosen = [];
       });
     },
