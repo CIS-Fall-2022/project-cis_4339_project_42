@@ -31,7 +31,7 @@ VITE_ROOT_API=http://localhost:8080
 MONGO_URL= mongodb+srv://admin:VKBNbpHqRPTwC4t0@cis-4339.fzizdes.mongodb.net/CIS-4339
 VITE_OID=6335ee2a14b89fb274c3dd33
 VITE_ONAME=Organization B
-PORT=3001
+PORT=8080
 ```
 (Organization C Environment)
 ```
@@ -39,7 +39,7 @@ VITE_ROOT_API=http://localhost:8081
 MONGO_URL= mongodb+srv://admin:VKBNbpHqRPTwC4t0@cis-4339.fzizdes.mongodb.net/CIS-4339
 VITE_OID=6335ee6114b89fb274c3dd34
 VITE_ONAME=Organization C
-PORT=3002
+PORT=8081
 ```
 
 
