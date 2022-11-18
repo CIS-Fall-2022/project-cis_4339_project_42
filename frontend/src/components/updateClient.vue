@@ -140,12 +140,22 @@ export default {
                 this.clientEvents.push({
                   eventName: data[i].eventName,
                   eventDate: data[i].date,
-                  oid: data[i].VITE_OID,
+                  _id: data[i]._id
                 });
               }
 
             });
         });
+
+        this.clientEvents.forEach((attended) => {
+          this.eventsChosen.forEach((selected) => {
+            if (attended._id == selected._id) {
+              alert("Client is already Attending")
+            }
+          })
+        })
+        console.log(this.clientEvents)
+        console.log(this.eventsChosen)
         this.eventsChosen = [];
       });
     },
