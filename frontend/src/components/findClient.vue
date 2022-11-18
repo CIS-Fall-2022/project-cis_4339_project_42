@@ -102,7 +102,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      orgID: import.meta.env.VITE_OID,
+      orgID: import.meta.env.VITE_OID, //Because of our different env for each org. We did this so less changes will be needed
       queryData: [],
       //Parameter for search to occur
       searchBy: "",
@@ -129,7 +129,7 @@ export default {
       } else if (this.searchBy === "Client Number") {
         apiURL =
           import.meta.env.VITE_ROOT_API +
-          `/primarydata/search/${this.orgID}/?phoneNumbers.primaryPhone=${this.phoneNumbers}&searchBy=number`; //Not able to get the 
+          `/primarydata/search/${this.orgID}/?phoneNumbers.primaryPhone=${this.phoneNumbers}&searchBy=number`; 
       }
       axios.get(apiURL).then((resp) => {
         this.queryData = resp.data;
@@ -140,7 +140,7 @@ export default {
       this.searchBy = "";
       this.firstName = "";
       this.lastName = "";
-      this.phoneNumbers = ""; //this.phoneNumber
+      this.phoneNumbers = "";
 
       //get all entries
       let apiURL = import.meta.env.VITE_ROOT_API + `/primarydata/${this.orgID}`;

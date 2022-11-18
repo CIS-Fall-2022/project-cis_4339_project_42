@@ -142,7 +142,6 @@ router.get("/chart/:oid", (req, res, next) => {
   
 
 router.get("/id/:id", (req, res, next) => { 
-  //eventdata.find({id: String(req.params.id)}, (error, data) => { Works on keeping data in box
   eventdata.find({_id: String(req.params.id)}, (error, data) => { //able to get event data to stay when updating
       if (error) {
           return next(error)
@@ -154,7 +153,6 @@ router.get("/id/:id", (req, res, next) => {
 
 
 //GET all events for an Organization
-//router.get("/:oid", (req, res, next) => {
 router.get("/oid/:oid", (req, res, next) => { 
     eventdata.find({oid: String(req.params.oid)}, (error, data) => {
         if (error) {
@@ -206,7 +204,7 @@ router.get("/search/:oid", (req, res, next) => { //:oid
 //GET events for which a client is signed up to in an Organization
 router.get("/client/:oid/:id", (req, res, next) => { 
     eventdata.find( 
-        { attendees: req.params.id, oid: String(req.params.oid) }, //{ attendees: String(req.params.id), oid: String(req.params.oid) },
+        { attendees: req.params.id, oid: String(req.params.oid) },
         (error, data) => { 
             if (error) {
                 return next(error);
@@ -320,36 +318,5 @@ router.put("/:id", (req, res, next) => {
   );
 });
 
-
-
-//PUT add attendee to event
-router.put("/addAttendee/:id", (req, res, next) => {
-    //only add attendee if not yet signed uo
-    eventdata.find( 
-        { _id: req.params.id, attendees: req.body.attendee }, 
-        (error, data) => { 
-            if (error) {
-                return next(error);
-            } else {
-                if (data.length == 0) {
-                    eventdata.updateOne(
-                        { _id: req.params.id }, 
-                        { $addToSet: { attendees: req.body.attendee } },
-                        (error, data) => {
-                            if (error) {
-                                consol
-                                return next(error);
-                            } else {
-                                res.json(data);
-                            }
-                        }
-                    );
-                }
-                
-            }
-        }
-    );
-    
-});
 
 module.exports = router;

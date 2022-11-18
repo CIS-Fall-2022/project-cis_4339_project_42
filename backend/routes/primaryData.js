@@ -1,49 +1,18 @@
 const express = require("express"); 
-const { eventNames } = require("process");
 const router = express.Router(); 
 
 //importing data model schemas
 let { primarydata } = require("../models/models"); 
-let { eventdata } = require("../models/models");
-let { organizationData } = require("../models/models");
-
 
 
 //We added all the organizations APIs in PrimaryData.JS
 //Because our Organization ID and event ID 
 //all link to the clients (PrimaryDB)
 
-/*
-//GET all organizations
-router.get("/oid", (req, res, next) => { 
-    organizationData.find( 
-        (error, data) => {
-            if (error) {
-                return next(error);
-            } else {
-                res.json(data);
-            }
-        }
-    );
-});
-
-
-/* //Get Single Organization
-router.get("/:id", (req, res, next) => { 
-    organizationData.find({_id: String(req.params.id) }, (error, data) => {
-    //eventdata.find({oid: String(req.params.oid)}, (error, data) => {
-        if (error) {
-            return next(error)
-        } else {
-            res.json(data)
-        }
-    })
-}); */
 
 //Get Single person
 router.get("/id/:id", (req, res, next) => { 
     primarydata.find({_id: String(req.params.id) }, (error, data) => {
-    //eventdata.find({oid: String(req.params.oid)}, (error, data) => {
         if (error) {
             return next(error)
         } else {
@@ -51,8 +20,6 @@ router.get("/id/:id", (req, res, next) => {
         }
     })
 });
-
-
 
 
 
@@ -82,6 +49,7 @@ router.get("/:oid", (req, res, next) => {
         }
     ).sort({ 'updatedAt': -1 }).limit(10);
 });
+
 
 //GET single client by ID in an Organization
 router.get(":oid/id/:id", (req, res, next) => {
@@ -118,7 +86,7 @@ router.get("/search/:oid/", (req, res, next) => {  //:oid
     } else if (req.query["searchBy"] === 'number') {
         dbQuery = {
             "phoneNumbers.primaryPhone": { $regex: `^${req.query["phoneNumbers.primaryPhone"]}`},
-            oid: String(req.params.oid), $options: "i" } //PhoneNumber not working Need to look at
+            oid: String(req.params.oid), $options: "i" }
     };
     primarydata.find( 
         dbQuery, 
@@ -133,20 +101,6 @@ router.get("/search/:oid/", (req, res, next) => {  //:oid
 });
 
 
-//GET events for a single client
-//Not entirely sure what this endpoint is for
-/*
-router.get("/events/:id", (req, res, next) => { 
-    eventdata.find({_id: req.params.id }, (error, data) => {
-    //eventdata.find({oid: String(req.params.oid)}, (error, data) => {
-        if (error) {
-            return next(error)
-        } else {
-            res.json(data)
-        }
-    })
-});
-*/
 //POST a Client with the provided oid from the front end
 router.post("/", (req, res, next) => { 
     primarydata.create( 

@@ -67,10 +67,9 @@ export default {
         this.client.address.county = data.address.county;
         this.client.address.zip = data.address.zip;
       });
-    axios //this is saying is the breaking point
+    axios 
       .get(
         import.meta.env.VITE_ROOT_API +
-          //`/eventdata/id/${this.$route.params.id}`
           `/eventdata/client/${this.orgID}/${this.$route.params.id}`
       )
       .then((resp) => {
@@ -89,7 +88,6 @@ export default {
         this.eventData.push({
           eventName: data[i].eventName,
           _id: data[i]._id,
-          //oid: data[i].VITE_OID,
           attendees: data[i].attendees,
         });
       }
@@ -109,16 +107,7 @@ export default {
         });
       });
     },
-    /*
-    editEvent() {
-      let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/oid/${this.$route.params.id}` //${this.$route.params.id}
-      axios.get(apiURL, this.event).then(() => {
-        alert("Do you wish to continue?");
-        this.$router.back().catch((error) => {
-          console.log(error);
-        });
-      });
-    },*/
+    
     addToEvent() {
       this.eventsChosen.forEach((event) => {
         let apiURL =
@@ -128,12 +117,10 @@ export default {
           axios
             .get(
               import.meta.env.VITE_ROOT_API +  
-                //`/eventdata/` Able to get all events back
-                //`/primarydata/events/${this.$route.params.id}` //GET INVALID DATE
-                `/eventdata/client/${this.orgID}/${this.$route.params.id}` //Need to take a look on 
-                //`/eventdata/id/${this.$route.params.id}` //Get 200 after PUT 
+                `/eventdata/client/${this.orgID}/${this.$route.params.id}`
             )
             .then((resp) => {
+              this.clientEvents = [];
               let data = resp.data;
               for (let i = 0; i < data.length; i++) {
 
@@ -146,20 +133,18 @@ export default {
 
             });
         });
-
+        
         this.clientEvents.forEach((attended) => {
           this.eventsChosen.forEach((selected) => {
             if (attended._id == selected._id) {
-              alert("Client is already Attending")
+              alert("Client is already Attending " + selected.eventName + "!")
             }
           })
         })
-        console.log(this.clientEvents)
-        console.log(this.eventsChosen)
         this.eventsChosen = [];
       });
     },
-    editEvent(eventID) {
+    editEvent(eventID) { //The way to get to the Events Update page just by clicking on the name of the event under the clients events list they are attending
       this.$router.push({ name: "eventdetails", params: { id: eventID } });
     },
     deleteClient() {
@@ -168,7 +153,6 @@ export default {
         alert("Client Deleted.");
         this.$router.back().catch((error) => {
           console.log(error);
-          alert('An Error has Occured, please try again.')
         });
       });
     },
@@ -220,6 +204,7 @@ export default {
                   v-for="error of v$.client.firstName.$errors"
                   :key="error.$uid"
                 >{{ error.$message }}!</p>
+                <p style="color:#ff0000">Please Fill Out!</p>
               </span>
             </label>
           </div>
@@ -254,6 +239,7 @@ export default {
                   v-for="error of v$.client.lastName.$errors"
                   :key="error.$uid"
                 >{{ error.$message }}!</p>
+                <p style="color:#ff0000">Please Fill Out!</p>
               </span>
             </label>
           </div>
@@ -275,6 +261,7 @@ export default {
                   v-for="error of v$.client.email.$errors"
                   :key="error.$uid"
                 >{{ error.$message }}!</p>
+                <p style="color:#ff0000">Please Fill Out!</p>
               </span>
             </label>
           </div>
@@ -295,6 +282,7 @@ export default {
                   v-for="error of v$.client.phoneNumbers[0].primaryPhone.$errors"
                   :key="error.$uid"
                 >{{ error.$message }}!</p>
+                <p style="color:#ff0000">Please Fill Out!</p>
               </span>
             </label>
           </div>
@@ -331,6 +319,7 @@ export default {
                   v-for="error of v$.client.address.line1.$errors"
                   :key="error.$uid"
                 >{{ error.$message }}!</p>
+                <p style="color:#ff0000">Please Fill Out!</p>
               </span>
             </label>
           </div>
@@ -361,6 +350,7 @@ export default {
                   v-for="error of v$.client.address.city.$errors"
                   :key="error.$uid"
                 >{{ error.$message }}!</p>
+                <p style="color:#ff0000">Please Fill Out!</p>
               </span>
             </label>
           </div>
@@ -392,6 +382,7 @@ export default {
                   v-for="error of v$.client.address.zip.$errors"
                   :key="error.$uid"
                 >{{ error.$message }}!</p>
+                <p style="color:#ff0000">Please Fill Out!</p>
               </span>
             </label>
           </div>
@@ -440,7 +431,7 @@ export default {
               <tbody class="divide-y divide-gray-300">
                 <tr
                   @click="editEvent(event._id)" 
-                  v-for="event in clientEvents" :key="event._id"> <!--@click="editEvent(event._id)" -->
+                  v-for="event in clientEvents" :key="event._id">
                   <td class="p-2 text-left">{{ event.eventName }}</td>
                   <td class="p-2 text-left">{{ formattedDate(event.eventDate) }}</td>
                 </tr>
@@ -461,7 +452,7 @@ export default {
             <div class="flex justify-between">
               <button
                 @click="addToEvent"
-                type="submit"
+                type="submit, reset"
                 class="mt-5 bg-red-700 text-white rounded"
               >Add Client to Events</button>
             </div>

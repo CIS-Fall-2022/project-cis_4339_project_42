@@ -117,6 +117,7 @@ export default {
                   v-for="error of v$.client.firstName.$errors"
                   :key="error.$uid"
                 >{{ error.$message }}!</p>
+                <p style="color:#ff0000">Please Fill Out!</p>
               </span>
             </label>
           </div>
@@ -151,6 +152,7 @@ export default {
                   v-for="error of v$.client.lastName.$errors"
                   :key="error.$uid"
                 >{{ error.$message }}!</p>
+                <p style="color:#ff0000">Please Fill Out!</p>
               </span>
             </label>
           </div>
@@ -173,6 +175,7 @@ export default {
                   v-for="error of v$.client.email.$errors"
                   :key="error.$uid"
                 >{{ error.$message }}!</p>
+                <p style="color:#ff0000">Please Fill Out!</p>
               </span>
             </label>
           </div>
@@ -193,6 +196,7 @@ export default {
                   v-for="error of v$.client.phoneNumbers[0].primaryPhone.$errors"
                   :key="error.$uid"
                 >{{ error.$message }}!</p>
+                <p style="color:#ff0000">Please Fill Out!</p>
               </span>
             </label>
           </div>
@@ -229,6 +233,7 @@ export default {
                   v-for="error of v$.client.address.line1.$errors"
                   :key="error.$uid"
                 >{{ error.$message }}!</p>
+                <p style="color:#ff0000">Please Fill Out!</p>
               </span>
             </label>
           </div>
@@ -259,6 +264,7 @@ export default {
                   v-for="error of v$.client.address.city.$errors"
                   :key="error.$uid"
                 >{{ error.$message }}!</p>
+                <p style="color:#ff0000">Please Fill Out!</p>
               </span>
             </label>
           </div>
@@ -290,6 +296,7 @@ export default {
                   v-for="error of v$.client.address.zip.$errors"
                   :key="error.$uid"
                 >{{ error.$message }}!</p>
+                <p style="color:#ff0000">Please Fill Out!</p>
               </span>
             </label>
           </div>

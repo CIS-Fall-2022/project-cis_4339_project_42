@@ -2,7 +2,7 @@
   <main>
     <div>
       <h1 class="font-bold text-4xl text-red-700 tracking-widest text-center mt-10">List of Events</h1>
-      <h2 class="invisible"> VITE_OID: {{orgID}}</h2>
+      <h2 class="invisible"> VITE_OID: {{orgID}}</h2> <!--Because of our different env for each org. We did this so less changes will be needed-->
     </div>
     <div class="px-10 pt-20">
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-10">
@@ -91,7 +91,7 @@ import axios from "axios";
 export default {
   data() {
     return {
-      orgID: import.meta.env.VITE_OID,
+      orgID: import.meta.env.VITE_OID, //Because of our different env for each org. We did this so less changes will be needed
       queryData: [],
       //Parameter for search to occur
       searchBy: "",

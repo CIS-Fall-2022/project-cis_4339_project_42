@@ -26,6 +26,7 @@
                   v-for="error of v$.event.eventName.$errors"
                   :key="error.$uid"
                 >{{ error.$message }}!</p>
+                <p style="color:#ff0000">Please Fill Out!</p>
               </span>
             </label>
           </div>
@@ -46,6 +47,7 @@
                   v-for="error of v$.event.date.$errors"
                   :key="error.$uid"
                 >{{ error.$message }}!</p>
+                <p style="color:#ff0000">Please Fill Out!</p>
               </span>
             </label>
           </div>
@@ -144,6 +146,7 @@
                   v-for="error of v$.event.address.line1.$errors"
                   :key="error.$uid"
                 >{{ error.$message }}!</p>
+                <p style="color:#ff0000">Please Fill Out!</p>
               </span>
             </label>
           </div>
@@ -176,6 +179,7 @@
                   v-for="error of v$.event.address.city.$errors"
                   :key="error.$uid"
                 >{{ error.$message }}!</p>
+                <p style="color:#ff0000">Please Fill Out!</p>
               </span>
             </label>
           </div>
@@ -209,6 +213,7 @@
                   v-for="error of v$.event.address.zip.$errors"
                   :key="error.$uid"
                 >{{ error.$message }}!</p>
+                <p style="color:#ff0000">Please Fill Out!</p>
               </span>
             </label>
           </div>
@@ -276,7 +281,7 @@ export default {
             this.checkedServices = [];
           })
           .catch((error) => {
-            console.log(error);
+            console.log(error)
             alert('An Error has Occured, please try again.')
           });
       }

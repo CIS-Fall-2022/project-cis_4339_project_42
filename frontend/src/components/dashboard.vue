@@ -22,6 +22,9 @@
         <h2 class="text-2xl font-bold">List of Events</h2>
         <h3 class="italic">The Month and Year</h3>
       </div>
+      <!--Here is the original way we had by using our resources of MongoDB giving us the ability to develop a graph with our data.-->
+      <!--HOWEVER We went to the way the professor wanted the graph, however she never specified how she wanted us to code the graph-->
+      
       <!--div class="flex flex-col col-span-2">
         <table class="min-w-full shadow-md rounded">
           <thead class="bg-gray-50 text-x2">
@@ -59,6 +62,8 @@
           </tbody>
         </table>
         </div> -->
+      
+      <!--HERE IS THE WAY THE PROFESSOR WANTED IT-->
       <div class="flex flex-col col-span-2 mx-auto h-6/6 w-5/6 border border-slate-900">
         <table class="w-full text-sm text-left border border-slate-900">
           <thead class="font-bold text-sm dark:text-white uppercase" style="background-color: #C8102E;">
@@ -74,7 +79,6 @@
               <td class="p-3 text-center dark:text-black uppercase"> {{ queryData[index].Attendees }}</td>
               <td class="p-3 text-center dark:text-black uppercase"> {{ queryData[index].Name }}</td>
               <td class="p-3 text-center dark:text-black uppercase"> {{ new Date(queryData[index].Date).toUTCString().slice(0, -12) }}</td>
-<!-- df5797956895077f6dacdf6b8ed4f4ba1d5222fe -->
             </tr>
           </tbody>
         </table>

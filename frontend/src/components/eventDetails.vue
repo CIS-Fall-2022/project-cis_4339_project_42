@@ -23,6 +23,7 @@
                   v-for="error of v$.event.eventName.$errors"
                   :key="error.$uid"
                 >{{ error.$message }}!</p>
+                <p style="color:#ff0000">Please Fill Out!</p>
               </span>
             </label>
           </div>
@@ -43,6 +44,7 @@
                   v-for="error of v$.event.date.$errors"
                   :key="error.$uid"
                 >{{ error.$message }}!</p>
+                <p style="color:#ff0000">Please Fill Out!</p>
               </span>
             </label>
           </div>
@@ -141,6 +143,7 @@
                   v-for="error of v$.event.address.line1.$errors"
                   :key="error.$uid"
                 >{{ error.$message }}!</p>
+                <p style="color:#ff0000">Please Fill Out!</p>
               </span>
             </label>
           </div>
@@ -173,6 +176,7 @@
                   v-for="error of v$.event.address.city.$errors"
                   :key="error.$uid"
                 >{{ error.$message }}!</p>
+                <p style="color:#ff0000">Please Fill Out!</p>
               </span>
             </label>
           </div>
@@ -206,6 +210,7 @@
                   v-for="error of v$.event.address.zip.$errors"
                   :key="error.$uid"
                 >{{ error.$message }}!</p>
+                <p style="color:#ff0000">Please Fill Out!</p>
               </span>
             </label>
           </div>
@@ -310,7 +315,6 @@ export default {
       .get(
         //import.meta.env.VITE_ROOT_API + `/eventdata/${this.$route.params.oid}` //able to get Clients information to stay when Updating
         import.meta.env.VITE_ROOT_API + `/eventdata/id/${this.$route.params.id}` //NOW ABLE TO GET CLIENT & EVENT data to stay when update page
-        //import.meta.env.VITE_ROOT_API + `/eventdata/${this.$route.params.id}/${this.orgID}`
       )
       .then((resp) => {
         let data = resp.data[0];
@@ -356,6 +360,7 @@ export default {
         });
       });
     },
+    //The way to get to the Clients Update page just by clicking on their name under the events attendees list
     editClient(clientID) {
       this.$router.push({ name: "updateclient", params: { id: clientID } });
     },
@@ -363,8 +368,7 @@ export default {
       let apiURL = import.meta.env.VITE_ROOT_API + `/eventdata/delete/${this.$route.params.id}`;
       axios.delete(apiURL, this.event).then(() => {
         alert("Event Deleted.");
-        //Trying to get the error message to display when things go south
-        this.$router.back().catch((error) => { ////.catch(error => {error => this.status = error.response.data.status; console.log(error.response.data); console.log(error.response.status);console.log(error.response.headers);
+        this.$router.back().catch((error) => {
           console.log(error);
         });
       });
