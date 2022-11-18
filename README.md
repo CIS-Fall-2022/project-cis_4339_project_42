@@ -17,6 +17,12 @@ Follow instructions in backend README
 cd frontend
 ```
 ### Example .env variables place this .env file in the backend and frontend folders 
+- First copy an Organization environment below
+- Second paste the information into the .env file in the frontend folder
+- Third pase the information into the .env file in the backend folder
+- Restart backend if necessary
+
+
 (Organization A Environment)
 ```
 VITE_ROOT_API=http://localhost:3000
